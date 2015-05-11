@@ -68,8 +68,8 @@ void Nivel::pasarTurno()
 {
 	if (!terminado())
 	{
-		_turno = _turno + 1;
 		_soles = _soles + 1 + generarSoles();
+		_turno = _turno + 1;
 		_flores = floresDaniadas(_flores);
 		_vampiros = vampirosSpawneados(vampirosPosicionados(vampirosDaniados(_vampiros)));
 		// TODO:  mover y spawnear vampiros, alterar spawning
@@ -93,6 +93,8 @@ std::vector<VampiroEnJuego> Nivel::vampirosPosicionados(std::vector<VampiroEnJue
 std::vector<VampiroEnJuego> Nivel::vampirosDaniados(std::vector<VampiroEnJuego> vampiros)
 {
 	std::vector<VampiroEnJuego> res;
+
+
 
 	return res;
 }
@@ -129,17 +131,31 @@ void Nivel::daniarFlor(FlorEnJuego& flor)
 	{
 		VampiroEnJuego v = _vampiros.at(i);
 
-		if (v.pos.y == flor.pos.y)
+		// Este if/else nos permite parar el ciclo si la flor ya esta muerta
+		if (!florMuerta(flor))
 		{
-			flor.vida = flor.vida - v.vampiro.cuantoPegaV();
+			if (v.pos.x == flor.pos.x && v.pos.y == flor.pos.y)
+			{
+				// Vemos si la flor tiene la habilidad explotar
+				if(florExplota(flor))
+				{
+					// La flor explota por lo que seteamos su vida en 0 (muerta)
+					flor.vida = 0;
+				}
+				else
+				{
+					// La flor no explota -> le restamos el danio del vampiro
+					flor.vida = flor.vida - v.vampiro.cuantoPegaV();
+				}
+			}
+
+			i++;
 		}
 		else
 		{
-			if(v.pos.y == flor.pos.y && v.pos.x == flor.pos.x && florExplota(flor))
-			{
-				flor.vida = -1;
-			}
+			i = _vampiros.size(); // hago esto para no usar break, luego consultamos si se puede usar break
 		}
+
 	}
 
 }
@@ -148,7 +164,8 @@ bool Nivel::florMuerta(FlorEnJuego flor)
 {
 	bool res = false;
 
-	if (flor.vida < 0)
+	// Decidimos que la flor esta muerta si su vida no es mayor a CERO
+	if (!flor.vida > 0)
 	{
 		res = true;
 	}
@@ -162,8 +179,10 @@ int Nivel::generarSoles()
 
 	unsigned int i = 0;
 
+	// Iteramos por todas las FlorEnJuego
 	while(i < _flores.size())
 	{
+		// Si la flor tiene la habilidad Generar sumamos uno al resultado
 		if(florGenera(_flores.at(i)))
 		{
 			res++;
@@ -178,42 +197,12 @@ int Nivel::generarSoles()
 
 bool Nivel::florGenera(FlorEnJuego f)
 {
-	bool res = false;
-
-	unsigned int i = 0;
-
-	while(i < f.flor.habilidadesF().size())
-	{
-		if (f.flor.habilidadesF().at(i) == Generar)
-		{
-			res = true;
-			break;
-		}
-
-		i++;
-	}
-
-	return res;
+	return tieneHabilidad(f.flor, Generar);
 }
 
 bool Nivel::florExplota(FlorEnJuego f)
 {
-	bool res = false;
-
-	unsigned int i = 0;
-
-	while(i < f.flor.habilidadesF().size())
-	{
-		if (f.flor.habilidadesF().at(i) == Explotar)
-		{
-			res = true;
-			break;
-		}
-
-		i++;
-	}
-
-	return res;
+	return tieneHabilidad(f.flor, Explotar);
 }
 
 bool Nivel::terminado()
@@ -244,6 +233,28 @@ int Nivel::vampirosEnCasa()
 bool Nivel::obsesivoCompulsivo()
 {
 
+}
+
+bool Nivel::tieneHabilidad(Flor f, Habilidad h)
+{
+	bool res = false;
+
+	unsigned int i = 0;
+
+	while(i < f.habilidadesF().size())
+	{
+		if (f.habilidadesF().at(i) == h)
+		{
+			res = true;
+			i = f.habilidadesF().size(); // para no usar break, la gracia de esto es parar de iterar cuando ya no es necesario
+		}
+		else
+		{
+			i++;
+		}
+	}
+
+	return res;
 }
 
 void Nivel::Mostrar(std::ostream& os)

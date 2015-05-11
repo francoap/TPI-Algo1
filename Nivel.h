@@ -71,6 +71,7 @@ private:
 	std::vector<VampiroEnJuego> vampirosDaniados(std::vector<VampiroEnJuego> vampiros);
 	std::vector<VampiroEnJuego> vampirosPosicionados(std::vector<VampiroEnJuego> vampiros);
 	std::vector<VampiroEnJuego> vampirosSpawneados(std::vector<VampiroEnJuego> vampiros);
+	bool tieneHabilidad(Flor f, Habilidad h);
 
 public:
 	Nivel();
