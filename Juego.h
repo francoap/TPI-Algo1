@@ -18,6 +18,11 @@ private:
 	std::vector<Nivel> _niveles;
 	int _nivelActual;
 
+	std::vector<Nivel> maxFlores(std::vector<Nivel> niveles);
+	std::vector<Nivel> maxSoles(std::vector<Nivel> niveles);
+
+	std::vector<int> nivelesGanados();
+
 public:
 
 	Juego();

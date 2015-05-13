@@ -49,5 +49,5 @@ int main(){
   j.agregarNivel(n);
   
   cout << j.muyDeExactas() << endl;
-  
+
 }
