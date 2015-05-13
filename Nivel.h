@@ -61,17 +61,56 @@ private:
 	std::vector<VampiroEnJuego> _vampiros;
 	std::vector<VampiroEnEspera> _spawning;
 
+	bool sinColisiones(Posicion p);
+
+	bool existeFlorEnPos(Posicion p);
+
+	bool florExploto(Posicion p, std::vector<FlorEnJuego> flores);
+
 	int vampirosEnCasa();
 	int generarSoles();
+
 	bool florGenera(FlorEnJuego f);
 	bool florExplota(FlorEnJuego f);
+
 	std::vector<FlorEnJuego> floresDaniadas(std::vector<FlorEnJuego> flores);
+	std::vector<FlorEnJuego> sinFloresMuertas(std::vector<FlorEnJuego> flores);
+
 	void daniarFlor(FlorEnJuego& flor);
 	bool florMuerta(FlorEnJuego flor);
+
 	std::vector<VampiroEnJuego> vampirosDaniados(std::vector<VampiroEnJuego> vampiros);
-	std::vector<VampiroEnJuego> vampirosPosicionados(std::vector<VampiroEnJuego> vampiros);
+	std::vector<VampiroEnJuego> vampirosPosicionados(std::vector<VampiroEnJuego> vampiros, std::vector<FlorEnJuego> flores);
 	std::vector<VampiroEnJuego> vampirosSpawneados(std::vector<VampiroEnJuego> vampiros);
+
+	std::vector<VampiroEnEspera> nuevosVampiros();
+	std::vector<VampiroEnEspera> nuevoSpawning();
+
 	bool tieneHabilidad(Flor f, Habilidad h);
+
+	void daniarVampiro(VampiroEnJuego& vampiro);
+
+	int dmgDaniarVampiro(VampiroEnJuego vampiro);
+
+	bool vampiroMuerto(VampiroEnJuego vampiro);
+
+	bool enMira(VampiroEnJuego v, FlorEnJuego f);
+	bool enLineaDeVision(VampiroEnJuego v, FlorEnJuego f);
+
+	void moverVampiro(VampiroEnJuego& vampiro, std::vector<FlorEnJuego> flores);
+	void avanzar(VampiroEnJuego& vampiro);
+	void desviar(VampiroEnJuego& vampiro);
+	void retroceder(VampiroEnJuego& vampiro);
+
+	bool posicionMayorInmediata(int a, int b);
+	bool posicionMayor(Posicion a, Posicion b);
+	bool posicionMenor(Posicion a, Posicion b);
+
+	bool posicionesIguales(Posicion a, Posicion b);
+
+
+	int pot(int a, int b);
+
 
 public:
 	Nivel();
