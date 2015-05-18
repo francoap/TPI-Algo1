@@ -1,7 +1,10 @@
 #include "Flor.h"
 
 Flor::Flor(){
-
+	std::vector<Habilidad> a;
+	_vida = 0;
+	_cuantoPega = 0;
+	_habilidades = a;
 }
 
 Flor::Flor(Vida v, int cP, std::vector<Habilidad> hs)
