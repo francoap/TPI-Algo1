@@ -633,11 +633,158 @@ int Nivel::pot(int a, int b)
 
 void Nivel::Mostrar(std::ostream& os)
 {
+	os << "Instancia de Nivel\n";
+	os << "=================\n";
+	os << "Ancho: " << _ancho << "\n";
+	os << "Alto: " << _alto << "\n";
+	os << "Turno: " << _turno << "\n";
+	os << "Soles: " << _soles << "\n";
 
+	// FLORES
+	os << "Flores: [ ";
+
+	int i = 0;
+
+	while(i < _flores.size())
+	{
+		FlorEnJuego f = _flores.at(i);
+
+		os << "( { F " << f.flor.vidaF() << " " << f.flor.cuantoPegaF() << " [ ";
+
+		int j = 0;
+
+		while(j < f.flor.habilidadesF().size())
+		{
+			os << f.flor.nombreHabilidad(f.flor.habilidadesF().at(i)) << " ";
+
+			j++;
+		}
+
+		os << "] } ";
+
+		os << "( " << f.pos.x << " " << f.pos.y << " ) " << "vida ) ";
+
+		i++;
+	}
+
+	os << "]";
+	// FLORES - END
+
+	os << "\n";
+
+	// VAMPIROS
+	os << "Vampiros: [ ";
+
+	i = 0;
+
+	while(i < _vampiros.size())
+	{
+		VampiroEnJuego v = _vampiros.at(i);
+
+		os << "( { V " << v.vampiro.nombreClase(v.vampiro.claseV()) << " " << v.vampiro.vidaV() << " " << v.vampiro.cuantoPegaV() << " } ";
+		os << "( " << v.pos.x << " " << v.pos.y << " ) " << v.vida << " ) ";
+
+		i++;
+	}
+
+	os << "]";
+	// VAMPIROS - END
+
+	os << "\n";
+
+	// SPAWNING
+	os << "Spawning: [ ";
+
+	i = 0;
+
+	while(i < _spawning.size())
+	{
+		VampiroEnEspera v = _spawning.at(i);
+
+		os << "( { V " << v.vampiro.nombreClase(v.vampiro.claseV()) << " " << v.vampiro.vidaV() << " " << v.vampiro.cuantoPegaV() << " } ";
+		os << v.fila << " " << v.turno << " ) ";
+
+		i++;
+	}
+
+	os << "]";
+	// SPAWNING - END
+
+	os << "\n";
 }
 
 void Nivel::Guardar(std::ostream& os)
 {
+	os << "{ N " << _ancho << " " << _alto << " " << _turno << " " << _soles << " ";
+
+	// FLORES
+	os << "[ ";
+
+	int i = 0;
+
+	while(i < _flores.size())
+	{
+		FlorEnJuego f = _flores.at(i);
+
+		os << "( { F " << f.flor.vidaF() << " " << f.flor.cuantoPegaF() << " [ ";
+
+		int j = 0;
+
+		while(j < f.flor.habilidadesF().size())
+		{
+			os << f.flor.nombreHabilidad(f.flor.habilidadesF().at(i)) << " ";
+
+			j++;
+		}
+
+		os << "] } ";
+
+		os << "( " << f.pos.x << " " << f.pos.y << " ) " << "vida ) ";
+
+		i++;
+	}
+
+	os << "] ";
+	// FLORES - END
+
+
+	// VAMPIROS
+	os << "[ ";
+
+	i = 0;
+
+	while(i < _vampiros.size())
+	{
+		VampiroEnJuego v = _vampiros.at(i);
+
+		os << "( { V " << v.vampiro.nombreClase(v.vampiro.claseV()) << " " << v.vampiro.vidaV() << " " << v.vampiro.cuantoPegaV() << " } ";
+		os << "( " << v.pos.x << " " << v.pos.y << " ) " << v.vida << " ) ";
+
+		i++;
+	}
+
+	os << "] ";
+	// VAMPIROS - END
+
+
+	// SPAWNING
+	os << "[ ";
+
+	i = 0;
+
+	while(i < _spawning.size())
+	{
+		VampiroEnEspera v = _spawning.at(i);
+
+		os << "( { V " << v.vampiro.nombreClase(v.vampiro.claseV()) << " " << v.vampiro.vidaV() << " " << v.vampiro.cuantoPegaV() << " } ";
+		os << v.fila << " " << v.turno << " ) ";
+
+		i++;
+	}
+
+	os << "] }";
+	// SPAWNING - END
+
 
 }
 

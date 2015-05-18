@@ -24,4 +24,6 @@ public:
 	void Guardar(std::ostream& os);
 	void Cargar(std::istream& is);
 
+	// Lo mismo que nombreHabilidad en clase flor
+	std::string nombreClase(ClaseVampiro c);
 };

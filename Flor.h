@@ -12,6 +12,8 @@ private:
 	std::vector<Habilidad> _habilidades;
 	int _cuantoPega;
 
+
+
 public:
 	Flor();
 	Flor(Vida v, int cP, std::vector<Habilidad> hs);
@@ -24,4 +26,7 @@ public:
 	void Guardar(std::ostream& os);
 	void Cargar(std::istream& is);
 
+	// Agrego esto como publico porque lo necesitamos en los metodos de entrada/salida de otras clases
+	// sino hay que reescribir codigo de forma innecesaria. Espero que no les moleste.
+	std::string nombreHabilidad(Habilidad h);
 };
