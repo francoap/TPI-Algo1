@@ -2,8 +2,8 @@
 
 Juego::Juego()
 {
-	std::vector<Flor>& f;
-	std::vector<Vampiro>& v;
+	std::vector<Flor> f;
+	std::vector<Vampiro> v;
 	_flores = f;
     _vampiros = v;
 
