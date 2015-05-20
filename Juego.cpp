@@ -2,6 +2,13 @@
 
 Juego::Juego()
 {
+	std::vector<Flor>& f;
+	std::vector<Vampiro>& v;
+	_flores = f;
+    _vampiros = v;
+
+    std::vector<Nivel> n;
+    _niveles = n;
 }
 
 Juego::Juego(std::vector<Flor>& flores, std::vector<Vampiro>& vamps)
