@@ -2,6 +2,16 @@
 
 Nivel::Nivel()
 {
+	_ancho = 10;
+	_alto = 10;
+	_turno = 0;
+	_soles = 0;
+	std::vector<FlorEnJuego> f;
+	_flores = f;
+	std::vector<VampiroEnJuego> v;
+	_vampiros = v;
+	std::vector<VampiroEnEspera> s;
+	_spawning = s;
 }
 
 Nivel::Nivel(int ancho, int alto, int soles, std::vector<VampiroEnEspera>& spawninglist)
@@ -206,7 +216,7 @@ std::vector<VampiroEnEspera> Nivel::nuevosVampiros()
 	while(i < _spawning.size())
 	{
 		VampiroEnEspera v = _spawning.at(i);
-		if(v.turno = _turno)
+		if(v.turno == _turno)
 		{
 			res.push_back(v);
 		}
@@ -321,17 +331,17 @@ int Nivel::dmgDaniarVampiro(VampiroEnJuego vampiro)
 	return dmg;
 }
 
-bool Nivel::vampiroMuerto(VampiroEnJuego vampiro)
+/*bool Nivel::vampiroMuerto(VampiroEnJuego vampiro)
 {
 	bool res = false;
 
-	if (!vampiro.vida > 0)
+	if (!(vampiro.vida > 0))
 	{
 		res = true;
 	}
 
 	return res;
-}
+}*/
 
 bool Nivel::enMira(VampiroEnJuego v, FlorEnJuego f)
 {
@@ -448,7 +458,7 @@ void Nivel::daniarFlor(FlorEnJuego& flor)
 		}
 		else
 		{
-			i = _vampiros.size(); // hago esto para no usar break, luego consultamos si se puede usar break
+			i = _vampiros.size();
 		}
 
 	}
@@ -460,7 +470,7 @@ bool Nivel::florMuerta(FlorEnJuego flor)
 	bool res = false;
 
 	// Decidimos que la flor esta muerta si su vida no es mayor a CERO
-	if (!flor.vida > 0)
+	if (!(flor.vida > 0))
 	{
 		res = true;
 	}
@@ -566,7 +576,7 @@ bool Nivel::posicionMayorInmediata(int a, int b)
 
 	while(i < _flores.size() && !stop)
 	{
-		if(i != a && i != b && (posicionMayor(_flores.at(i).pos, _flores.at(b).pos)^posicionMenor(_flores.at(i).pos, _flores.at(a).pos)))
+		if(i != a && i != b && (posicionMayor(_flores.at(i).pos, _flores.at(b).pos) && posicionMenor(_flores.at(i).pos, _flores.at(a).pos)))
 		{
 			r = false;
 			stop = true;

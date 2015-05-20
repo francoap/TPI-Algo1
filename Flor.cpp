@@ -1,9 +1,11 @@
 #include "Flor.h"
 
-Flor::Flor(){
+Flor::Flor()
+{
 	std::vector<Habilidad> a;
 	_vida = 0;
 	_cuantoPega = 0;
+	a.push_back(Generar);
 	_habilidades = a;
 }
 

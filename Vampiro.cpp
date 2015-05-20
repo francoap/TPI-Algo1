@@ -2,6 +2,9 @@
 
 Vampiro::Vampiro()
 {
+    _vida = 0;
+    _cuantoPega = 0;
+    _clase = Caminante;
 }
 
 Vampiro::Vampiro(ClaseVampiro cv, Vida v, int cP)

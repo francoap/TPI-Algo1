@@ -92,7 +92,7 @@ private:
 
 	int dmgDaniarVampiro(VampiroEnJuego vampiro);
 
-	bool vampiroMuerto(VampiroEnJuego vampiro);
+	//bool vampiroMuerto(VampiroEnJuego vampiro);
 
 	bool enMira(VampiroEnJuego v, FlorEnJuego f);
 	bool enLineaDeVision(VampiroEnJuego v, FlorEnJuego f);
