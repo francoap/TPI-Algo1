@@ -2,13 +2,6 @@
 
 Juego::Juego()
 {
-	std::vector<Flor> f;
-	std::vector<Vampiro> v;
-	_flores = f;
-    _vampiros = v;
-
-    std::vector<Nivel> n;
-    _niveles = n;
 }
 
 Juego::Juego(std::vector<Flor>& flores, std::vector<Vampiro>& vamps)
@@ -56,76 +49,7 @@ std::vector<Nivel> Juego::estosSaleFacil()
     return maxFlores(maxSoles(_niveles));
 }
 
-std::vector<Nivel> Juego::maxSoles(std::vector<Nivel> niveles)
-{
-    std::vector<Nivel> res;
 
-    unsigned long i = 0;
-
-    while(i < niveles.size())
-    {
-        // bool add define si el nivel va a ser agregado a la lista de maximos
-        // para empezar suponemos que el nivel i-esimo es un maximo
-        bool add = true;
-
-        unsigned long j = 0;
-
-        while(j < niveles.size())
-        {
-            // verificamos que sea un maximo comparado con cada nivel j-esimo
-            if (niveles.at(i).solesN() < niveles.at(j).solesN())
-            {
-                // como no es maximo comparado con el nivel j-esimo dado
-                // no queremos agregarlo a la lista de maximos
-                add = false;
-            }
-
-            j++;
-        }
-
-        // si el nivel i-esimo es maximo lo agregamos a la lista de maximos
-        if(add)
-        {
-            res.push_back(niveles.at(i));
-        }
-
-        i++;
-    }
-
-    return res;
-}
-
-std::vector<Nivel> Juego::maxFlores(std::vector<Nivel> niveles)
-{
-    std::vector<Nivel> res;
-
-    unsigned long i = 0;
-
-    while(i < niveles.size())
-    {
-        unsigned long j = 0;
-        bool add = true;
-
-        while(j < niveles.size())
-        {
-            if (niveles.at(i).floresN().size() < niveles.at(j).floresN().size())
-            {
-                add = false;
-            }
-
-            j++;
-        }
-
-        if(add)
-        {
-            res.push_back(niveles.at(i));
-        }
-
-        i++;
-    }
-
-    return res;
-}
 
 void Juego::altoCheat(int n)
 {
@@ -182,6 +106,91 @@ bool Juego::muyDeExactas()
     return res;
 }
 
+void Juego::Mostrar(std::ostream& os)
+{
+
+}
+
+void Juego::Guardar(std::ostream& os)
+{
+
+}
+
+void Juego::Cargar(std::iostream& is)
+{
+
+}
+
+//auxiliares
+std::vector<Nivel> Juego::maxSoles(std::vector<Nivel> niveles)
+{
+    std::vector<Nivel> res;
+
+    unsigned long i = 0;
+
+    while(i < niveles.size())
+    {
+        // bool add define si el nivel va a ser agregado a la lista de maximos
+        // para empezar suponemos que el nivel i-esimo es un maximo
+        bool add = true;
+
+        unsigned long j = 0;
+
+        while(j < niveles.size())
+        {
+            // verificamos que sea un maximo comparado con cada nivel j-esimo
+            if (niveles.at(i).solesN() < niveles.at(j).solesN())
+            {
+                // como no es maximo comparado con el nivel j-esimo dado
+                // no queremos agregarlo a la lista de maximos
+                add = false;
+            }
+
+            j++;
+        }
+
+        // si el nivel i-esimo es maximo lo agregamos a la lista de maximos
+        if(add)
+        {
+            res.push_back(niveles.at(i));
+        }
+
+        i++;
+    }
+    return res;
+}
+
+std::vector<Nivel> Juego::maxFlores(std::vector<Nivel> niveles)
+{
+    std::vector<Nivel> res;
+
+    unsigned long i = 0;
+
+    while(i < niveles.size())
+    {
+        unsigned long j = 0;
+        bool add = true;
+
+        while(j < niveles.size())
+        {
+            if (niveles.at(i).floresN().size() < niveles.at(j).floresN().size())
+            {
+                add = false;
+            }
+
+            j++;
+        }
+
+        if(add)
+        {
+            res.push_back(niveles.at(i));
+        }
+
+        i++;
+    }
+    return res;
+}
+
 std::vector<int> Juego::nivelesGanados()
 {
     std::vector<int> res;
@@ -199,21 +208,5 @@ std::vector<int> Juego::nivelesGanados()
 
         i++;
     }
-
     return res;
-}
-
-void Juego::Mostrar(std::ostream& os)
-{
-
-}
-
-void Juego::Guardar(std::ostream& os)
-{
-
-}
-
-void Juego::Cargar(std::iostream& is)
-{
-
 }
