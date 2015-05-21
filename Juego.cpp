@@ -112,14 +112,38 @@ void Juego::Mostrar(std::ostream& os)
 	os << "=================\n";
 
     // FLORES
+	os << "Flores:\n";
 
+	int i = 0;
+
+	while(i < _flores.size())
+	{
+		Flor f = _flores.at(i);
+
+		f.Mostrar(os);
+
+		i++;
+	}
 	// FLORES - END
 
 	os << "\n";
 
 	// VAMPIROS
+	os << "Vampiros:\n";
 
-	// VAMPIROS - END
+	int i = 0;
+
+	while(i < _vampiros.size())
+	{
+		Vampiro v = _vampiros.at(i);
+
+	    v.Mostrar(os);
+
+		i++;
+	}
+    // VAMPIROS - END
+
+	os << "\n";
 
 	// NIVELES
 

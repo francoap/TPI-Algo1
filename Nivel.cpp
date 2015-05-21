@@ -157,7 +157,7 @@ void Nivel::Mostrar(std::ostream& os)
 	{
 		FlorEnJuego f = _flores.at(i);
 
-		os << "( { F " << f.flor.vidaF() << " " << f.flor.cuantoPegaF() << " [ ";
+		os << "(Flor de " << f.flor.vidaF() << " de vida, que pega " << f.flor.cuantoPegaF() << ", con las siguientes habilidades: [ ";
 
 		int j = 0;
 
@@ -168,9 +168,7 @@ void Nivel::Mostrar(std::ostream& os)
 			j++;
 		}
 
-		os << "] } ";
-
-		os << "( " << f.pos.x << " " << f.pos.y << " ) " << "vida ) ";
+		os << "], en la posicion (" << f.pos.x << "," << f.pos.y << ") y con vida " << f.vida << ") ";
 
 		i++;
 	}
@@ -189,8 +187,8 @@ void Nivel::Mostrar(std::ostream& os)
 	{
 		VampiroEnJuego v = _vampiros.at(i);
 
-		os << "( { V " << v.vampiro.nombreClase(v.vampiro.claseV()) << " " << v.vampiro.vidaV() << " " << v.vampiro.cuantoPegaV() << " } ";
-		os << "( " << v.pos.x << " " << v.pos.y << " ) " << v.vida << " ) ";
+		os << "(Vampiro de clase " << v.vampiro.nombreClase(v.vampiro.claseV()) << ", de vida " << v.vampiro.vidaV() << ", que pega " << v.vampiro.cuantoPegaV() <<;
+		os << ", en la posicion (" << v.pos.x << "," << v.pos.y << ") y con vida " << v.vida << ") ";
 
 		i++;
 	}
@@ -209,8 +207,8 @@ void Nivel::Mostrar(std::ostream& os)
 	{
 		VampiroEnEspera v = _spawning.at(i);
 
-		os << "( { V " << v.vampiro.nombreClase(v.vampiro.claseV()) << " " << v.vampiro.vidaV() << " " << v.vampiro.cuantoPegaV() << " } ";
-		os << v.fila << " " << v.turno << " ) ";
+		os << "(Vampiro de clase " << v.vampiro.nombreClase(v.vampiro.claseV()) << ", de vida" << v.vampiro.vidaV() << ", que pega " << v.vampiro.cuantoPegaV() <<;
+		os <<" y va a aparecer en la fila " v.fila << " del turno " << v.turno << ") ";
 
 		i++;
 	}
@@ -247,7 +245,7 @@ void Nivel::Guardar(std::ostream& os)
 
 		os << "] } ";
 
-		os << "( " << f.pos.x << " " << f.pos.y << " ) " << "vida ) ";
+		os << "( " << f.pos.x << " " << f.pos.y << " ) " << f.vida << " ) ";
 
 		i++;
 	}
