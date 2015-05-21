@@ -302,7 +302,7 @@ void Nivel::Cargar(std::istream& is)
 }
 
 
-// auxiliares
+// AUXILIARES:
 bool Nivel::sinColisiones(Posicion p)
 {
 	bool res = true;

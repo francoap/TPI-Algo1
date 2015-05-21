@@ -2,6 +2,12 @@
 
 Juego::Juego()
 {
+	std::vector<Flor> flores;
+	_flores = flores;
+	std::vector<Vampiro> vampiros;
+	_vampiros = vampiros;
+	std::vector<Nivel> niveles;
+	_niveles = niveles;
 }
 
 Juego::Juego(std::vector<Flor>& flores, std::vector<Vampiro>& vamps)
@@ -49,8 +55,6 @@ std::vector<Nivel> Juego::estosSaleFacil()
     return maxFlores(maxSoles(_niveles));
 }
 
-
-
 void Juego::altoCheat(int n)
 {
     Nivel nivel = _niveles.at(n);
@@ -66,49 +70,60 @@ void Juego::altoCheat(int n)
 bool Juego::muyDeExactas()
 {
     bool res = true;
-    bool stop = false;
 
-    if (nivelesGanados().size() >= 1)
-    {
-        if(nivelesGanados().at(0) == 1)
-        {
-            if (nivelesGanados().size() >= 2)
+	if (nivelesGanados().size == 1)
+	{
+		res = (nivelesGanados()[0] == 1);
+	}
+
+	if (nivelesGanados().size == 2)
+	{
+		res = (nivelesGanados()[0] == 1 && nivelesGanados()[1] == 2);
+	}
+
+	if (nivelesGanados().size > 2)
+	{
+	    if (nivelesGanados()[0] != 1 || nivelesGanados()[1] != 2)
+	    {
+	    	res = false;
+	    }
+            else
             {
+		int i = 0;
 
-                if(nivelesGanados().at(1) == 2)
-                {
-                    int i = 2;
-
-                    while(i < nivelesGanados().size() && !stop)
-                    {
-                        if (nivelesGanados().at(i) != nivelesGanados().at(i-1) + nivelesGanados().at(i-2))
-                        {
-                            res = false;
-                            stop = true;
-                        }
-
-                        i++;
-                    }
-                }
-                else
-                {
-                    res = false;
-                }
+		while (i < nivelesGanados().size && nivelesGanados()[i] >= 3 && res == true)
+		{
+			if (nivelesGanados()[i] != nivelesGanados()[i-1] + nivelesGanados()[i-2])
+			{
+				res = false;
+			}
+			i++;
+		}
             }
-        }
-        else
-        {
-            res = false;
+
         }
 
-    }
-
-    return res;
+	return res;
 }
 
 void Juego::Mostrar(std::ostream& os)
 {
+	os << "Instancia de Juego\n";
+	os << "=================\n";
 
+    // FLORES
+
+	// FLORES - END
+
+	os << "\n";
+
+	// VAMPIROS
+
+	// VAMPIROS - END
+
+	// NIVELES
+
+	// NIVELES - END
 }
 
 void Juego::Guardar(std::ostream& os)
@@ -121,7 +136,7 @@ void Juego::Cargar(std::iostream& is)
 
 }
 
-//auxiliares
+// AUXILIARES:
 std::vector<Nivel> Juego::maxSoles(std::vector<Nivel> niveles)
 {
     std::vector<Nivel> res;

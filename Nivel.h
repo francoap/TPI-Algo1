@@ -61,7 +61,7 @@ private:
 	std::vector<VampiroEnJuego> _vampiros;
 	std::vector<VampiroEnEspera> _spawning;
 
-//auxiliares
+// AUXILIARES:
 	bool sinColisiones(Posicion p);
 	bool existeFlorEnPos(Posicion p);
 	bool florExploto(Posicion p, std::vector<FlorEnJuego> flores);
@@ -108,6 +108,7 @@ public:
 	void pasarTurno();
 	bool terminado();
 	bool obsesivoCompulsivo();
+
 
 	void Mostrar(std::ostream& os);
 	void Guardar(std::ostream& os);

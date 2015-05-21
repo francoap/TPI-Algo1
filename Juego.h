@@ -18,7 +18,7 @@ private:
 	std::vector<Nivel> _niveles;
 	int _nivelActual;
 
-//auxiliares
+// AUXILIARES:
 	std::vector<Nivel> maxFlores(std::vector<Nivel> niveles);
 	std::vector<Nivel> maxSoles(std::vector<Nivel> niveles);
 	std::vector<int> nivelesGanados();
@@ -36,6 +36,7 @@ public:
 	std::vector<Nivel> estosSaleFacil();
 	void altoCheat(int n);
 	bool muyDeExactas();
+
 
 	void Mostrar(std::ostream& os);
 	void Guardar(std::ostream& os);
