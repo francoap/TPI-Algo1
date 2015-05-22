@@ -47,7 +47,28 @@ std::vector<Nivel>& Juego::nivelesJ()
 
 void Juego::agregarNivel(Nivel& n, int i)
 {
-
+if(i >= 0 && i <= _niveles.size() && n.floresN().size() == 0 && n.vampirosN().size() == 0 && n.turnoN() == 0)
+	{
+		std::vector<Nivel> nivelesnuevos;
+		
+		int j=0;
+		
+		while (j<i)
+		{
+			nivelesnuevos.push_back(_niveles[j]);
+			++j;
+		}
+		
+		nivelesnuevos.push_back(n);
+		
+		while (j< _niveles.size())
+		{
+			nivelesnuevos.push_back(_niveles[j]);
+			++j;
+		}
+		
+		_niveles=nivelesnuevos;
+	}
 }
 
 void Juego::jugarNivel(Nivel& n, int i)
