@@ -99,13 +99,10 @@ void Nivel::pasarTurno()
 	}
 }
 
-
-
 bool Nivel::terminado()
 {
 	return (_vampiros.size() == 0 && _spawning.size() == 0) || vampirosEnCasa() > 0;
 }
-
 
 bool Nivel::obsesivoCompulsivo()
 {
@@ -141,7 +138,10 @@ bool Nivel::obsesivoCompulsivo()
 
 void Nivel::comprarSoles(int n)
 {
-
+	if(n > 0)
+	{
+		_soles = _soles + n;
+	}
 }
 
 void Nivel::Mostrar(std::ostream& os)
@@ -168,9 +168,9 @@ void Nivel::Mostrar(std::ostream& os)
 
 		while(j < f.flor.habilidadesF().size())
 		{
-			os << f.flor.nombreHabilidad(f.flor.habilidadesF().at(i)) << " ";
+			os << f.flor.nombreHabilidad(f.flor.habilidadesF().at(j)) << " ";
 
-			j++;
+			++j;
 		}
 
 		os << "], en la posicion (" << f.pos.x << "," << f.pos.y << ") y con vida " << f.vida << ") ";
@@ -192,7 +192,7 @@ void Nivel::Mostrar(std::ostream& os)
 	{
 		VampiroEnJuego v = _vampiros.at(i);
 
-		os << "(Vampiro de clase " << v.vampiro.nombreClase(v.vampiro.claseV()) << ", de vida " << v.vampiro.vidaV() << ", que pega " << v.vampiro.cuantoPegaV() <<;
+		os << "(Vampiro de clase " << v.vampiro.nombreClase(v.vampiro.claseV()) << ", de vida " << v.vampiro.vidaV() << ", que pega " << v.vampiro.cuantoPegaV();
 		os << ", en la posicion (" << v.pos.x << "," << v.pos.y << ") y con vida " << v.vida << ") ";
 
 		i++;
@@ -212,8 +212,8 @@ void Nivel::Mostrar(std::ostream& os)
 	{
 		VampiroEnEspera v = _spawning.at(i);
 
-		os << "(Vampiro de clase " << v.vampiro.nombreClase(v.vampiro.claseV()) << ", de vida" << v.vampiro.vidaV() << ", que pega " << v.vampiro.cuantoPegaV() <<;
-		os <<" y va a aparecer en la fila " v.fila << " del turno " << v.turno << ") ";
+		os << "(Vampiro de clase " << v.vampiro.nombreClase(v.vampiro.claseV()) << ", de vida " << v.vampiro.vidaV() << ", que pega " << v.vampiro.cuantoPegaV();
+		os <<" y va a aparecer en la fila " << v.fila << " del turno " << v.turno << ") ";
 
 		i++;
 	}
@@ -243,7 +243,7 @@ void Nivel::Guardar(std::ostream& os)
 
 		while(j < f.flor.habilidadesF().size())
 		{
-			os << f.flor.nombreHabilidad(f.flor.habilidadesF().at(i)) << " ";
+			os << f.flor.nombreHabilidad(f.flor.habilidadesF().at(j)) << " ";
 
 			j++;
 		}
@@ -301,7 +301,7 @@ void Nivel::Guardar(std::ostream& os)
 
 void Nivel::Cargar(std::istream& is)
 {
-using namespace std;
+/*using namespace std;
 
 	is.ignore(2);
 
@@ -327,6 +327,7 @@ using namespace std;
 		_soles = atoi(soles.c_str());
 
 		is.ignore(2);
+*/
 }
 
 
@@ -562,18 +563,6 @@ int Nivel::dmgDaniarVampiro(VampiroEnJuego vampiro)
 	return dmg;
 }
 
-/*bool Nivel::vampiroMuerto(VampiroEnJuego vampiro)
-{
-	bool res = false;
-
-	if (!(vampiro.vida > 0))
-	{
-		res = true;
-	}
-
-	return res;
-}*/
-
 bool Nivel::enMira(VampiroEnJuego v, FlorEnJuego f)
 {
 	return (f.pos.y == v.pos.y) && (f.pos.x <= v.pos.x) && enLineaDeVision(v, f);
@@ -623,13 +612,10 @@ std::vector<FlorEnJuego> Nivel::floresDaniadas(std::vector<FlorEnJuego> flores)
 
 		daniarFlor(f);
 
-		//if (!florMuerta(f))
-		//{
 		// Mantenemos las flores muertas porque las necesitamos para verificar
 		// las flores que explotaron durante la etapa en la que movemos los vampiros.
 		// Debemos entonces limpiar la lista de flores luego de procesar la lista de vampiros
 		res.push_back(f);
-		//}
 
 		i++;
 	}
@@ -816,7 +802,6 @@ bool Nivel::tieneHabilidad(Flor f, Habilidad h)
 // elevar a potencia > 0
 int Nivel::pot(int a, int b)
 {
-
 	int i = 1;
 	int res = a;
 

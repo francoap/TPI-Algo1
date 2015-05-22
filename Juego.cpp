@@ -47,7 +47,7 @@ std::vector<Nivel>& Juego::nivelesJ()
 
 void Juego::agregarNivel(Nivel& n, int i)
 {
-    _niveles.push_back(n); // AGREGARON UN PARAMETRO NUEVO.
+
 }
 
 void Juego::jugarNivel(Nivel& n, int i)
@@ -76,17 +76,17 @@ bool Juego::muyDeExactas()
 {
     bool res = true;
 
-	if (nivelesGanados().size == 1)
+	if (nivelesGanados().size() == 1)
 	{
 		res = (nivelesGanados()[0] == 1);
 	}
 
-	if (nivelesGanados().size == 2)
+	if (nivelesGanados().size() == 2)
 	{
 		res = (nivelesGanados()[0] == 1 && nivelesGanados()[1] == 2);
 	}
 
-	if (nivelesGanados().size > 2)
+	if (nivelesGanados().size() > 2)
 	{
 	    if (nivelesGanados()[0] != 1 || nivelesGanados()[1] != 2)
 	    {
@@ -96,7 +96,7 @@ bool Juego::muyDeExactas()
             {
 		int i = 0;
 
-		while (i < nivelesGanados().size && nivelesGanados()[i] >= 3 && res == true)
+		while (i < nivelesGanados().size() && nivelesGanados()[i] >= 3 && res == true)
 		{
 			if (nivelesGanados()[i] != nivelesGanados()[i-1] + nivelesGanados()[i-2])
 			{
@@ -139,7 +139,7 @@ void Juego::Mostrar(std::ostream& os)
 	os << "Vampiros:\n";
 	os << "\n";
 
-	int i = 0;
+	i = 0;
 
 	while(i < _vampiros.size())
 	{
@@ -157,7 +157,7 @@ void Juego::Mostrar(std::ostream& os)
 	os << "Niveles:\n";
 	os << "\n";
 
-	int i = 0;
+	i = 0;
 
 	while(i < _niveles.size())
     {
@@ -192,34 +192,34 @@ void Juego::Guardar(std::ostream& os)
 	os << "] [ ";
     
     // VAMPIROS
-	int j = 0;
+	i = 0;
 
-	while(j < _vampiros.size())
+	while(i < _vampiros.size())
 	{
-		Vampiro v = _vampiros[j];
+		Vampiro v = _vampiros[i];
 
 		v.Guardar(os);
 
 		os << " ";
 
-		j++;
+		i++;
 	}
     // VAMPIROS - END
 
 	os << "] [";
 
     // NIVELES
-    int k = 0;
+    i = 0;
 
-    while(k < _niveles.size())
+    while(i < _niveles.size())
     {
-    	Nivel n = _niveles[k];
+    	Nivel n = _niveles[i];
 
     	n.Guardar(os);
 
     	os << " ";
 
-    	k++;
+    	i++;
     }
     // NIVELES - END
 

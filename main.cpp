@@ -48,7 +48,7 @@ int main(){
 
 	Juego j(fs,vs);
   
-	j.agregarNivel(n);
+	j.agregarNivel(n,0);
   
 	cout << j.muyDeExactas() << endl;
 

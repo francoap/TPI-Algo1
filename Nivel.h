@@ -100,7 +100,6 @@ private:
 	std::vector<VampiroEnJuego> vampirosDaniados(std::vector<VampiroEnJuego> vampiros);
 	void daniarVampiro(VampiroEnJuego& vampiro);
 	int dmgDaniarVampiro(VampiroEnJuego vampiro);
-	//bool vampiroMuerto(VampiroEnJuego vampiro);
 	bool enMira(VampiroEnJuego v, FlorEnJuego f);
 	bool enLineaDeVision(VampiroEnJuego v, FlorEnJuego f);
 	std::vector<FlorEnJuego> floresDaniadas(std::vector<FlorEnJuego> flores);
