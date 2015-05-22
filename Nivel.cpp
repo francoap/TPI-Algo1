@@ -301,7 +301,7 @@ void Nivel::Guardar(std::ostream& os)
 
 void Nivel::Cargar(std::istream& is)
 {
-/*using namespace std;
+using namespace std;
 
 	is.ignore(2);
 
@@ -327,9 +327,142 @@ void Nivel::Cargar(std::istream& is)
 		_soles = atoi(soles.c_str());
 
 		is.ignore(2);
-*/
-}
 
+		// FLORES
+		vector<FlorEnJuego> floresnuevas;
+
+		string nohaymasflores = "";
+
+		while(nohaymasflores != "]")
+		{
+			is.ignore(2);
+
+			Flor f;
+			Posicion p;
+			FlorEnJuego fej = FlorEnJuego(f, p, f.vidaF());
+			
+			string fs = "";
+			getline(is,fs,'}');
+			istringstream fs2(fs);
+			f.Cargar(fs2);
+			fej.flor = f;
+
+			is.ignore (3);
+			
+			string posX = "";
+			getline(is,posX,' ');
+			fej.pos.x = atoi(posX.c_str());
+			
+			string posY = "";
+			getline(is,posY,' ');
+			fej.pos.y = atoi(posY.c_str());
+
+			is.ignore(2);
+
+			string vf = "";
+			getline(is,vf,' ');
+			fej.vida = atoi (vf.c_str());
+			
+			floresnuevas.push_back(fej);
+
+			is.ignore(2);
+			
+			nohaymasflores = is.peek();
+		}
+
+		_flores = floresnuevas;
+		// FLORES - END
+
+		is.ignore(4);
+
+		// VAMPIROS
+		vector<VampiroEnJuego> vampirosnuevos;
+
+		string nohaymasvampiros = "";
+
+		while(nohaymasvampiros != "]")
+		{
+			is.ignore(2);
+
+			Vampiro v;
+			Posicion p;
+			VampiroEnJuego vej = VampiroEnJuego(v, p, v.vidaV());
+			
+			string vs = "";
+			getline(is,vs,'}');
+			istringstream vs2(vs);
+			v.Cargar(vs2);
+			vej.vampiro = v;
+
+			is.ignore (3);
+			
+			string posX = "";
+			getline(is,posX,' ');
+			vej.pos.x = atoi(posX.c_str());
+			
+			string posY = "";
+			getline(is,posY,' ');
+			vej.pos.y = atoi(posY.c_str());
+
+			is.ignore(2);
+
+			string vv = "";
+			getline(is,vv,' ');
+			vej.vida = atoi (vv.c_str());
+			
+			vampirosnuevos.push_back(vej);
+
+			is.ignore(2);
+			
+			nohaymasvampiros = is.peek();
+		}
+
+		_vampiros = vampirosnuevos;
+		// VAMPIROS - END
+		
+		is.ignore(4);
+
+		// SPAWNING
+		vector<VampiroEnEspera> spawningnuevo;
+
+		string nohaymasspawning = "";
+
+		while(nohaymasspawning != "]")
+		{
+			is.ignore(2);
+
+			Vampiro v;
+			int f, t;
+			VampiroEnEspera vee = VampiroEnEspera(v, f, t);
+			
+			string vs = "";
+			getline(is,vs,'}');
+			istringstream vs3(vs);
+			v.Cargar(vs3);
+			vee.vampiro = v;
+
+			is.ignore (1);
+			
+			string fila3 = "";
+			getline(is,fila3,' ');
+			vee.fila = atoi(fila3.c_str());
+			
+			string turno3 = "";
+			getline(is,turno3,' ');
+			vee.turno = atoi(turno3.c_str());
+			
+			spawningnuevo.push_back(vee);
+
+			is.ignore(2);
+			
+			nohaymasspawning = is.peek();
+		}
+
+		_spawning = spawningnuevo;
+		// SPAWNING - END
+	}
+
+}
 
 // AUXILIARES:
 bool Nivel::sinColisiones(Posicion p)
