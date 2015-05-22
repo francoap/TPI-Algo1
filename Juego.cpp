@@ -45,9 +45,14 @@ std::vector<Nivel>& Juego::nivelesJ()
     return _niveles;
 }
 
-void Juego::agregarNivel(Nivel& n)
+void Juego::agregarNivel(Nivel& n, int i)
 {
-    _niveles.push_back(n);
+    _niveles.push_back(n); // AGREGARON UN PARAMETRO NUEVO.
+}
+
+void Juego::jugarNivel(Nivel& n, int i)
+{
+
 }
 
 std::vector<Nivel> Juego::estosSaleFacil()
@@ -110,15 +115,17 @@ void Juego::Mostrar(std::ostream& os)
 {
 	os << "Instancia de Juego\n";
 	os << "=================\n";
+	os << "\n";
 
     // FLORES
 	os << "Flores:\n";
+	os << "\n";
 
 	int i = 0;
 
 	while(i < _flores.size())
 	{
-		Flor f = _flores.at(i);
+		Flor f = _flores[i];
 
 		f.Mostrar(os);
 
@@ -130,12 +137,13 @@ void Juego::Mostrar(std::ostream& os)
 
 	// VAMPIROS
 	os << "Vampiros:\n";
+	os << "\n";
 
 	int i = 0;
 
 	while(i < _vampiros.size())
 	{
-		Vampiro v = _vampiros.at(i);
+		Vampiro v = _vampiros[i];
 
 	    v.Mostrar(os);
 
@@ -146,18 +154,86 @@ void Juego::Mostrar(std::ostream& os)
 	os << "\n";
 
 	// NIVELES
+	os << "Niveles:\n";
+	os << "\n";
 
+	int i = 0;
+
+	while(i < _niveles.size())
+    {
+    	Nivel n = _niveles[i];
+
+    	n.Mostrar(os);
+
+    	i++;
+    }
 	// NIVELES - END
 }
 
 void Juego::Guardar(std::ostream& os)
 {
+	os << "{ J [ ";
 
+    // FLORES
+	int i = 0;
+
+	while(i < _flores.size())
+	{
+		Flor f = _flores[i];
+
+		f.Guardar(os);
+        
+        os << " ";
+
+		i++;
+	}	
+	// FLORES - END
+
+	os << "] [ ";
+    
+    // VAMPIROS
+	int j = 0;
+
+	while(j < _vampiros.size())
+	{
+		Vampiro v = _vampiros[j];
+
+		v.Guardar(os);
+
+		os << " ";
+
+		j++;
+	}
+    // VAMPIROS - END
+
+	os << "] [";
+
+    // NIVELES
+    int k = 0;
+
+    while(k < _niveles.size())
+    {
+    	Nivel n = _niveles[k];
+
+    	n.Guardar(os);
+
+    	os << " ";
+
+    	k++;
+    }
+    // NIVELES - END
+
+    os <<"}";
 }
 
 void Juego::Cargar(std::iostream& is)
 {
-
+	// FLORES
+	// FLORES - END
+	// VAMPIROS
+	// VAMPIROS - END
+	// NIVELES
+	// NIVELES - END
 }
 
 // AUXILIARES:

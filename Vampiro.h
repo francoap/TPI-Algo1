@@ -6,11 +6,6 @@
 
 class Vampiro
 {
-
-	Vida _vida;
-	int _cuantoPega;
-	ClaseVampiro _clase;
-
 public:
 
 	Vampiro();
@@ -19,11 +14,17 @@ public:
 	ClaseVampiro claseV();
 	int cuantoPegaV();
 
-
 	void Mostrar(std::ostream& os);
 	void Guardar(std::ostream& os);
 	void Cargar(std::istream& is);
 
 	// Lo mismo que nombreHabilidad en clase flor
 	std::string nombreClase(ClaseVampiro c);
+
+
+private:
+
+	Vida _vida;
+	int _cuantoPega;
+	ClaseVampiro _clase;
 };

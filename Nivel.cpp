@@ -139,6 +139,11 @@ bool Nivel::obsesivoCompulsivo()
 	return res;
 }
 
+void Nivel::comprarSoles(int n)
+{
+
+}
+
 void Nivel::Mostrar(std::ostream& os)
 {
 	os << "Instancia de Nivel\n";
@@ -296,7 +301,32 @@ void Nivel::Guardar(std::ostream& os)
 
 void Nivel::Cargar(std::istream& is)
 {
+using namespace std;
 
+	is.ignore(2);
+
+	string tipo = "";
+	getline(is, tipo, ' ');
+
+	if(tipo == "N")
+	{
+		string ancho = "";
+		getline(is, ancho, ' ');
+		_ancho = atoi(ancho.c_str());
+
+		string alto = "";
+		getline(is, alto, ' ');
+		_alto = atoi(alto.c_str());
+
+		string turno = "";
+		getline(is, turno, ' ');
+		_turno = atoi(turno.c_str());
+
+		string soles = "";
+		getline(is, soles, ' ');
+		_soles = atoi(soles.c_str());
+
+		is.ignore(2);
 }
 
 

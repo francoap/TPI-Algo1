@@ -51,7 +51,31 @@ struct VampiroEnEspera
 
 class Nivel
 {
+public:
+
+	Nivel();
+	Nivel(int ancho, int alto, int soles, std::vector<VampiroEnEspera>& spawninglist);
+	int anchoN();
+	int altoN();
+	int turnoN();
+	int solesN();
+	std::vector<FlorEnJuego>& floresN();
+	std::vector<VampiroEnJuego>& vampirosN();
+	std::vector<VampiroEnEspera>& spawningN();
+	void agregarFlor(Flor f, Posicion p);
+	void pasarTurno();
+	bool terminado();
+	bool obsesivoCompulsivo();
+	void comprarSoles(int n);
+
+
+	void Mostrar(std::ostream& os);
+	void Guardar(std::ostream& os);
+	void Cargar(std::istream& is);
+
+
 private:
+
 	int _ancho;
 	int _alto;
 	int _turno;
@@ -93,26 +117,4 @@ private:
 	bool posicionesIguales(Posicion a, Posicion b);
 	bool tieneHabilidad(Flor f, Habilidad h);
 	int pot(int a, int b);
-
-public:
-	Nivel();
-	Nivel(int ancho, int alto, int soles, std::vector<VampiroEnEspera>& spawninglist);
-	int anchoN();
-	int altoN();
-	int turnoN();
-	int solesN();
-	std::vector<FlorEnJuego>& floresN();
-	std::vector<VampiroEnJuego>& vampirosN();
-	std::vector<VampiroEnEspera>& spawningN();
-	void agregarFlor(Flor f, Posicion p);
-	void pasarTurno();
-	bool terminado();
-	bool obsesivoCompulsivo();
-
-
-	void Mostrar(std::ostream& os);
-	void Guardar(std::ostream& os);
-	void Cargar(std::istream& is);
-
-
 };
