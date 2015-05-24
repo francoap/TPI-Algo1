@@ -1,6 +1,5 @@
 #pragma once
 #include <vector>
-
 #include <iostream>
 #include <fstream>
 
@@ -8,6 +7,9 @@
 #include "Vampiro.h"
 #include "Nivel.h"
 #include "Types.h"
+
+#include <sstream>
+#include <string>
 
 class Juego
 {
@@ -28,7 +30,7 @@ public:
 
 	void Mostrar(std::ostream& os);
 	void Guardar(std::ostream& os);
-	void Cargar(std::iostream& is);
+	void Cargar(std::istream& is);
 
 
 private:

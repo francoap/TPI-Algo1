@@ -1,5 +1,7 @@
 #include "Juego.h"
 #include <iostream>
+
+#include <string>
 #include <sstream>
 
 using namespace std;
@@ -46,9 +48,11 @@ int main(){
 	vector<Vampiro> vs;
 	vs.push_back(v);
 
+
 	Juego j(fs,vs);
   
 	j.agregarNivel(n,0);
+
   
 	cout << j.muyDeExactas() << endl;
 
@@ -60,7 +64,7 @@ int main(){
     f.Mostrar(cout); cout << endl;
     v.Mostrar(cout); cout << endl;
     n.Mostrar(cout); cout << endl;
-    j.Mostrar(cout);
+    j.Mostrar(cout); cout << endl;
 
     cout << "Probando guardado y carga: " << endl << endl;
 
@@ -93,6 +97,16 @@ int main(){
     n.Cargar(inN);
     cout << "Volvemos a mostrar la instancia luego de la carga: " << endl;
     n.Mostrar(cout);
+    cout << "-------------------------------------------------------------" << endl;
+
+    cout << "-------------------------------------------------------------" << endl;
+    cout << "\"Guardamos\" el juego en el ostream de la consola. Se guardo: ";
+    j.Guardar(cout);
+    cout << endl  << "Cargamos el siguiente istream: { J [ { F 33 6 [ Atacar Explotar ] } { F 33 0 [ Generar Explotar ] } ] [ { V Desviado 50 8 } { V Caminante 30 7 } ] [ { N 5 5 3 56 [ ( { F 33 6 [ Atacar Explotar ] } ( 2 3 ) 10 ) ( { F 33 0 [ Generar Explotar ] } ( 2 5 ) 33 ) ] [ ( { V Desviado 50 8 } ( 4 5 ) 10 ) ] [ ( { V Caminante 30 7 } 2 5 ) ] } ] }" << endl;
+    istringstream inJ("{ J [ { F 33 6 [ Atacar Explotar ] } { F 33 0 [ Generar Explotar ] } ] [ { V Desviado 50 8 } { V Caminante 30 7 } ] [ { N 5 5 3 56 [ ( { F 33 6 [ Atacar Explotar ] } ( 2 3 ) 10 ) ( { F 33 0 [ Generar Explotar ] } ( 2 5 ) 33 ) ] [ ( { V Desviado 50 8 } ( 4 5 ) 10 ) ] [ ( { V Caminante 30 7 } 2 5 ) ] } ] }");
+    j.Cargar(inJ);
+    cout << "Volvemos a mostrar la instancia luego de la carga: " << endl;
+    j.Mostrar(cout);
     cout << "-------------------------------------------------------------" << endl;
 
 	/* PROBANDO ENTRADA/SALIDA - END*/

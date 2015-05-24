@@ -47,7 +47,7 @@ std::vector<Nivel>& Juego::nivelesJ()
 
 void Juego::agregarNivel(Nivel& n, int i)
 {
-if(i >= 0 && i <= _niveles.size() && n.floresN().size() == 0 && n.vampirosN().size() == 0 && n.turnoN() == 0)
+if(i >= 0 && i <= _niveles.size() /*&& n.floresN().size() == 0 && n.vampirosN().size() == 0 && n.turnoN() == 0*/)
 	{
 		std::vector<Nivel> nivelesnuevos;
 		
@@ -227,7 +227,7 @@ void Juego::Guardar(std::ostream& os)
 	}
     // VAMPIROS - END
 
-	os << "] [";
+	os << "] [ ";
 
     // NIVELES
     i = 0;
@@ -244,17 +244,102 @@ void Juego::Guardar(std::ostream& os)
     }
     // NIVELES - END
 
-    os <<"}";
+    os <<"] }";
 }
 
-void Juego::Cargar(std::iostream& is)
+void Juego::Cargar(std::istream& is)
 {
+	using namespace std;
+
+	is.ignore(2);
+
+	string tipo = "";
+	getline(is, tipo, ' ');
+
+	if(tipo == "J")
+
 	// FLORES
+	{
+		is.ignore(2);
+		
+		vector<Flor> floresjuego;
+
+		string nohaymasflores = "";
+
+		while(nohaymasflores != "]")
+		{
+			Flor f;
+			
+			string fs = "";
+			getline(is,fs,'}');
+			istringstream fs2(fs);
+			f.Cargar(fs2);
+
+			floresjuego.push_back(f);
+
+			is.ignore(1);
+			
+			nohaymasflores = is.peek();
+		}
+
+		_flores = floresjuego;
+	
 	// FLORES - END
-	// VAMPIROS
+	
+		is.ignore(4);
+
+	// VAMPIROS		
+		vector<Vampiro> vampirosjuego;
+
+		string nohaymasvampiros = "";
+
+		while(nohaymasvampiros != "]")
+		{
+			Vampiro v;
+			
+			string vs = "";
+			getline(is,vs,'}');
+			istringstream vs2(vs);
+			v.Cargar(vs2);
+
+			vampirosjuego.push_back(v);
+
+			is.ignore(1);
+			
+			nohaymasvampiros = is.peek();
+		}
+
+		_vampiros = vampirosjuego;
 	// VAMPIROS - END
+	
+		is.ignore(4);
+
 	// NIVELES
+		vector<Nivel> nivelesjuego;
+
+		string nohaymasniveles = "";
+
+		while(nohaymasniveles != "]")
+		{
+			Nivel n;
+			
+			string ns = "";
+			getline(is,ns,'}');
+			istringstream ns2(ns);
+			n.Cargar(ns2);
+
+			nivelesjuego.push_back(n);
+
+			is.ignore(1);
+			
+			nohaymasniveles = is.peek();
+		}
+
+		_niveles = nivelesjuego;
+
 	// NIVELES - END
+
+	 }
 }
 
 // AUXILIARES:

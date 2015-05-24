@@ -18,9 +18,7 @@ public:
 	void Guardar(std::ostream& os);
 	void Cargar(std::istream& is);
 
-	// PREGUNTAR
-	// Agrego esto como publico porque lo necesitamos en los metodos de entrada/salida de otras clases
-	// sino hay que reescribir codigo de forma innecesaria. Espero que no les moleste.
+
 	std::string nombreHabilidad(Habilidad h);
 
 
