@@ -1,13 +1,13 @@
 #pragma once
-#include <vector>
-#include <iostream>
-#include <fstream>
 
 #include "Flor.h"
 #include "Vampiro.h"
 #include "Nivel.h"
 #include "Types.h"
 
+#include <vector>
+#include <iostream>
+#include <fstream>
 #include <sstream>
 #include <string>
 
@@ -40,7 +40,7 @@ private:
 	std::vector<Nivel> _niveles;
 	int _nivelActual;
 
-// AUXILIARES:
+
 	std::vector<Nivel> maxFlores(std::vector<Nivel> niveles);
 	std::vector<Nivel> maxSoles(std::vector<Nivel> niveles);
 	std::vector<int> nivelesGanados();

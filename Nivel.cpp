@@ -168,7 +168,7 @@ void Nivel::Mostrar(std::ostream& os)
 
 		while(j < f.flor.habilidadesF().size())
 		{
-			os << f.flor.nombreHabilidad(f.flor.habilidadesF().at(j)) << " ";
+			os << nombreHabilidad(f.flor.habilidadesF().at(j)) << " ";
 
 			++j;
 		}
@@ -192,7 +192,7 @@ void Nivel::Mostrar(std::ostream& os)
 	{
 		VampiroEnJuego v = _vampiros.at(i);
 
-		os << "(Vampiro de clase " << v.vampiro.nombreClase(v.vampiro.claseV()) << ", de vida " << v.vampiro.vidaV() << ", que pega " << v.vampiro.cuantoPegaV();
+		os << "(Vampiro de clase " << nombreClase(v.vampiro.claseV()) << ", de vida " << v.vampiro.vidaV() << ", que pega " << v.vampiro.cuantoPegaV();
 		os << ", en la posicion (" << v.pos.x << "," << v.pos.y << ") y con vida " << v.vida << ") ";
 
 		i++;
@@ -212,7 +212,7 @@ void Nivel::Mostrar(std::ostream& os)
 	{
 		VampiroEnEspera v = _spawning.at(i);
 
-		os << "(Vampiro de clase " << v.vampiro.nombreClase(v.vampiro.claseV()) << ", de vida " << v.vampiro.vidaV() << ", que pega " << v.vampiro.cuantoPegaV();
+		os << "(Vampiro de clase " << nombreClase(v.vampiro.claseV()) << ", de vida " << v.vampiro.vidaV() << ", que pega " << v.vampiro.cuantoPegaV();
 		os <<" y va a aparecer en la fila " << v.fila << " del turno " << v.turno << ") ";
 
 		i++;
@@ -243,7 +243,7 @@ void Nivel::Guardar(std::ostream& os)
 
 		while(j < f.flor.habilidadesF().size())
 		{
-			os << f.flor.nombreHabilidad(f.flor.habilidadesF().at(j)) << " ";
+			os << nombreHabilidad(f.flor.habilidadesF().at(j)) << " ";
 
 			j++;
 		}
@@ -268,7 +268,7 @@ void Nivel::Guardar(std::ostream& os)
 	{
 		VampiroEnJuego v = _vampiros.at(i);
 
-		os << "( { V " << v.vampiro.nombreClase(v.vampiro.claseV()) << " " << v.vampiro.vidaV() << " " << v.vampiro.cuantoPegaV() << " } ";
+		os << "( { V " << nombreClase(v.vampiro.claseV()) << " " << v.vampiro.vidaV() << " " << v.vampiro.cuantoPegaV() << " } ";
 		os << "( " << v.pos.x << " " << v.pos.y << " ) " << v.vida << " ) ";
 
 		i++;
@@ -287,7 +287,7 @@ void Nivel::Guardar(std::ostream& os)
 	{
 		VampiroEnEspera v = _spawning.at(i);
 
-		os << "( { V " << v.vampiro.nombreClase(v.vampiro.claseV()) << " " << v.vampiro.vidaV() << " " << v.vampiro.cuantoPegaV() << " } ";
+		os << "( { V " << nombreClase(v.vampiro.claseV()) << " " << v.vampiro.vidaV() << " " << v.vampiro.cuantoPegaV() << " } ";
 		os << v.fila << " " << v.turno << " ) ";
 
 		i++;
@@ -464,7 +464,8 @@ using namespace std;
 
 }
 
-// AUXILIARES:
+
+
 bool Nivel::sinColisiones(Posicion p)
 {
 	bool res = true;

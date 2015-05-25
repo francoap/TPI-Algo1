@@ -1,4 +1,5 @@
 #include "Juego.h"
+#include "Auxiliares.h"
 #include <iostream>
 
 #include <string>

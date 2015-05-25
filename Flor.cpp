@@ -31,28 +31,6 @@ std::vector<Habilidad>& Flor::habilidadesF()
 	return _habilidades;
 }
 
-std::string Flor::nombreHabilidad(Habilidad h)
-{
-	std::string res = "";
-
-	if (h == Generar)
-	{
-		res = "Generar";
-	}
-
-	if (h == Atacar)
-	{
-		res = "Atacar";
-	}
-
-	if (h == Explotar)
-	{
-		res = "Explotar";
-	}
-
-	return res;
-}
-
 void Flor::Mostrar(std::ostream& os)
 {
 	os << "Instancia de Flor\n";

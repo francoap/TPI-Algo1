@@ -1,5 +1,8 @@
 #pragma once
+
 #include "Types.h"
+#include "Auxiliares.h"
+
 #include <vector>
 #include <iostream>
 #include <string>
@@ -17,9 +20,6 @@ public:
 	void Mostrar(std::ostream& os);
 	void Guardar(std::ostream& os);
 	void Cargar(std::istream& is);
-
-
-	std::string nombreHabilidad(Habilidad h);
 
 
 private:

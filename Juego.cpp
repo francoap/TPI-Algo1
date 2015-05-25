@@ -342,7 +342,8 @@ void Juego::Cargar(std::istream& is)
 	 }
 }
 
-// AUXILIARES:
+
+
 std::vector<Nivel> Juego::maxSoles(std::vector<Nivel> niveles)
 {
     std::vector<Nivel> res;

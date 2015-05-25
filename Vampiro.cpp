@@ -29,23 +29,6 @@ int Vampiro::cuantoPegaV()
 	return _cuantoPega;
 }
 
-std::string Vampiro::nombreClase(ClaseVampiro c)
-{
-	std::string res = "";
-
-	if (c == Caminante)
-	{
-		res = "Caminante";
-	}
-
-	if (c == Desviado)
-	{
-		res = "Desviado";
-	}
-
-	return res;
-}
-
 void Vampiro::Mostrar(std::ostream& os)
 {
 	os << "Instancia de Vampiro\n";

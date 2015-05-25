@@ -1,12 +1,13 @@
 #pragma once
+
+#include "Flor.h"
+#include "Vampiro.h"
+#include "Auxiliares.h"
+
 #include <tuple>
 #include <vector>
 #include <iostream>
 #include <string>
-
-#include "Flor.h"
-#include "Vampiro.h"
-
 #include <sstream>
 
 struct FlorEnJuego
@@ -87,7 +88,7 @@ private:
 	std::vector<VampiroEnJuego> _vampiros;
 	std::vector<VampiroEnEspera> _spawning;
 
-// AUXILIARES:
+
 	bool sinColisiones(Posicion p);
 	bool existeFlorEnPos(Posicion p);
 	bool florExploto(Posicion p, std::vector<FlorEnJuego> flores);

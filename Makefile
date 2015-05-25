@@ -1,5 +1,5 @@
 CC = g++ -std=c++11
-OBJS = Juego.cpp Nivel.cpp Flor.cpp Vampiro.cpp main.cpp
+OBJS = Juego.cpp Nivel.cpp Flor.cpp Vampiro.cpp main.cpp Auxiliares.cpp
 OBJ_NAME = tpi
 
 
