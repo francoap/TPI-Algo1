@@ -257,9 +257,9 @@ void Juego::Cargar(std::istream& is)
 	getline(is, tipo, ' ');
 
 	if(tipo == "J")
-
-	// FLORES
 	{
+		// FLORES
+
 		is.ignore(2);
 		
 		vector<Flor> floresjuego;
@@ -342,39 +342,41 @@ void Juego::Cargar(std::istream& is)
 		is.ignore(4);
 
 	// NIVELES
-		vector<Nivel> nivelesjuego;
-		string nocargoniveles = "";
-		string nohaymasniveles = "";
-		nocargoniveles = is.peek();
+		vector<Nivel> nivelesJuego;
+		string noCargoNiveles = "";
+		string noHayMasNiveles = "";
+		noCargoNiveles = is.peek();
 		
-		if (nocargoniveles == "]")
-
+		if (noCargoNiveles == "]")
 		{
-					
-			nohaymasniveles== "]";
-			_niveles = nivelesjuego;
+
+			noHayMasNiveles == "]";
+			_niveles = nivelesJuego;
 		}
-		
 		else
-		
 		{
-
-			while(nohaymasniveles != "]")
+			while(noHayMasNiveles != "]")
 			{
 				Nivel n;
-				getline(is,ns,'}');
-				istringstream ns2(ns);
-				//n.Cargar(ns2);
+				/*string ns = "";
+				getline(is, ns, '}');
+				ns.append("}");
+				istringstream ns2(ns);*/
+				//cout << "Estamos en esto: " << is;
+				cout << "DBG 1 : " << is.rdbuf() << endl;
+				n.Cargar(is);
+				cout << "DBG 2 : " << is.rdbuf() << endl;
 
-				nivelesjuego.push_back(n);
+				nivelesJuego.push_back(n);
 
-				is.ignore(1);
-			
-				nohaymasniveles = is.peek();
+				is.ignore(2);
+
+				noHayMasNiveles = is.peek();
 			}
 
-			_niveles = nivelesjuego;
-		}	
+			_niveles = nivelesJuego;
+		}
+
 	// NIVELES - END
 
 	 }

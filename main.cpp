@@ -93,8 +93,8 @@ int main(){
     cout << "-------------------------------------------------------------" << endl;
     cout << "\"Guardamos\" el nivel en el ostream de la consola. Se guardo: ";
     n.Guardar(cout);
-    cout << endl  << "Cargamos el siguiente istream: { N 6 6 2 99 [ ] [ ] [ ] }" << endl;
-    istringstream inN("{ N 6 6 2 99 [ ] [ ] [ ] }");
+    cout << endl  << "Cargamos el siguiente istream: { N 5 5 3 56 [ ( { F 33 6 [ Atacar Explotar ] } ( 2 3 ) 10 ) ( { F 33 0 [ Generar Explotar ] } ( 2 5 ) 33 ) ] [ ( { V Desviado 50 8 } ( 4 5 ) 10 ) ] [ ( { V Caminante 30 7 } 2 5 ) ] } " << endl;
+    istringstream inN("{ N 5 5 3 56 [ ( { F 33 6 [ Atacar Explotar ] } ( 2 3 ) 10 ) ( { F 33 0 [ Generar Explotar ] } ( 2 5 ) 33 ) ] [ ( { V Desviado 50 8 } ( 4 5 ) 10 ) ] [ ( { V Caminante 30 7 } 2 5 ) ] } ");
     n.Cargar(inN);
     cout << "Volvemos a mostrar la instancia luego de la carga: " << endl;
     n.Mostrar(cout);

@@ -301,7 +301,7 @@ void Nivel::Guardar(std::ostream& os)
 
 void Nivel::Cargar(std::istream& is)
 {
-using namespace std;
+	using namespace std;
 
 	is.ignore(2);
 
@@ -335,7 +335,6 @@ using namespace std;
 		nocargoflores = is.peek();
 		
 		if (nocargoflores == "]")
-
 		{
 					
 			nohaymasflores== "]";
@@ -343,10 +342,8 @@ using namespace std;
 		}
 		
 		else
-		
 		{
 			while(nohaymasflores != "]")
-		
 			{
 				is.ignore(2);
 
@@ -457,17 +454,13 @@ using namespace std;
 		nocargospawning = is.peek();
 		
 		if (nocargospawning == "]")
-
 		{
-					
 			nohaymasspawning== "]";
 			_spawning = spawningnuevo;
 		}
 		
 		else
-		
 		{
-
 			while(nohaymasspawning != "]")
 			{
 				is.ignore(2);
@@ -498,7 +491,7 @@ using namespace std;
 			
 				nohaymasspawning = is.peek();
 			}
-		}	
+		}
 
 		_spawning = spawningnuevo;
 		// SPAWNING - END
