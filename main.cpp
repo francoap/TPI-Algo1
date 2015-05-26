@@ -93,8 +93,8 @@ int main(){
     cout << "-------------------------------------------------------------" << endl;
     cout << "\"Guardamos\" el nivel en el ostream de la consola. Se guardo: ";
     n.Guardar(cout);
-    cout << endl  << "Cargamos el siguiente istream: { N 6 6 2 99 [ ( { F 30 10 [ Generar Atacar ] } ( 2 4 ) 25 ) ] [ ( { V Desviado 45 60 } ( 6 5 ) 26 ) ] [ ( { V Caminante 50 50 } 2 2 ) ] }" << endl;
-    istringstream inN("{ N 6 6 2 99 [ ( { F 30 10 [ Generar Atacar ] } ( 2 4 ) 25 ) ] [ ( { V Desviado 45 60 } ( 6 5 ) 26 ) ] [ ( { V Caminante 50 50 } 2 2 ) ] }");
+    cout << endl  << "Cargamos el siguiente istream: { N 6 6 2 99 [ ] [ ] [ ] }" << endl;
+    istringstream inN("{ N 6 6 2 99 [ ] [ ] [ ] }");
     n.Cargar(inN);
     cout << "Volvemos a mostrar la instancia luego de la carga: " << endl;
     n.Mostrar(cout);
@@ -103,8 +103,9 @@ int main(){
     cout << "-------------------------------------------------------------" << endl;
     cout << "\"Guardamos\" el juego en el ostream de la consola. Se guardo: ";
     j.Guardar(cout);
-    cout << endl  << "Cargamos el siguiente istream: { J [ { F 33 6 [ Atacar Explotar ] } { F 33 0 [ Generar Explotar ] } ] [ { V Desviado 50 8 } { V Caminante 30 7 } ] [ { N 5 5 3 56 [ ( { F 33 6 [ Atacar Explotar ] } ( 2 3 ) 10 ) ( { F 33 0 [ Generar Explotar ] } ( 2 5 ) 33 ) ] [ ( { V Desviado 50 8 } ( 4 5 ) 10 ) ] [ ( { V Caminante 30 7 } 2 5 ) ] } ] }" << endl;
-    istringstream inJ("{ J [ { F 33 6 [ Atacar Explotar ] } { F 33 0 [ Generar Explotar ] } ] [ { V Desviado 50 8 } { V Caminante 30 7 } ] [ { N 5 5 3 56 [ ( { F 33 6 [ Atacar Explotar ] } ( 2 3 ) 10 ) ( { F 33 0 [ Generar Explotar ] } ( 2 5 ) 33 ) ] [ ( { V Desviado 50 8 } ( 4 5 ) 10 ) ] [ ( { V Caminante 30 7 } 2 5 ) ] } ] }");
+    cout << endl  << "Cargamos el siguiente istream: { J [ ] [ ] [ { N 5 5 3 56 [ ( { F 33 6 [ Atacar Explotar ] } ( 2 3 ) 10 ) ( { F 33 0 [ Generar Explotar ] } ( 2 5 ) 33 ) ] [ ( { V Desviado 50 8 } ( 4 5 ) 10 ) ] [ ( { V Caminante 30 7 } 2 5 ) ] } ] }" << endl;
+    istringstream inJ("{ J [ ] [ ] [ { N 5 5 3 56 [ ( { F 33 6 [ Atacar Explotar ] } ( 2 3 ) 10 ) ( { F 33 0 [ Generar Explotar ] } ( 2 5 ) 33 ) ] [ ( { V Desviado 50 8 } ( 4 5 ) 10 ) ] [ ( { V Caminante 30 7 } 2 5 ) ] } ] }");
+    //istringstream inJ("{ J [ ] [ ] [ ] }");
     j.Cargar(inJ);
     cout << "Volvemos a mostrar la instancia luego de la carga: " << endl;
     j.Mostrar(cout);

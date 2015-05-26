@@ -263,80 +263,118 @@ void Juego::Cargar(std::istream& is)
 		is.ignore(2);
 		
 		vector<Flor> floresjuego;
-
+		string nocargoflores = "";
 		string nohaymasflores = "";
+		nocargoflores = is.peek();
+		
+		if (nocargoflores == "]")
 
-		while(nohaymasflores != "]")
 		{
-			Flor f;
-			
-			string fs = "";
-			getline(is,fs,'}');
-			istringstream fs2(fs);
-			f.Cargar(fs2);
-
-			floresjuego.push_back(f);
-
-			is.ignore(1);
-			
-			nohaymasflores = is.peek();
+					
+			nohaymasflores== "]";
+			_flores = floresjuego;
 		}
+		
+		else
+		
+		{
 
-		_flores = floresjuego;
-	
+			while(nohaymasflores != "]")
+			{
+				Flor f;
+			
+				string fs = "";
+				getline(is,fs,'}');
+				istringstream fs2(fs);
+				f.Cargar(fs2);
+
+				floresjuego.push_back(f);
+
+				is.ignore(1);
+			
+				nohaymasflores = is.peek();
+			}
+
+			_flores = floresjuego;
+		}
 	// FLORES - END
 	
 		is.ignore(4);
 
 	// VAMPIROS		
 		vector<Vampiro> vampirosjuego;
-
+		string nocargovampiros = "";
 		string nohaymasvampiros = "";
+		nocargovampiros = is.peek();
+		
+		if (nocargovampiros == "]")
 
-		while(nohaymasvampiros != "]")
 		{
-			Vampiro v;
-			
-			string vs = "";
-			getline(is,vs,'}');
-			istringstream vs2(vs);
-			v.Cargar(vs2);
-
-			vampirosjuego.push_back(v);
-
-			is.ignore(1);
-			
-			nohaymasvampiros = is.peek();
+					
+			nohaymasvampiros== "]";
+			_vampiros = vampirosjuego;
 		}
+		
+		else
+		
+		{
 
-		_vampiros = vampirosjuego;
+			while(nohaymasvampiros != "]")
+			{
+				Vampiro v;
+			
+				string vs = "";
+				getline(is,vs,'}');
+				istringstream vs2(vs);
+				v.Cargar(vs2);
+
+				vampirosjuego.push_back(v);
+
+				is.ignore(1);
+			
+				nohaymasvampiros = is.peek();
+			}
+
+			_vampiros = vampirosjuego;
+		}
 	// VAMPIROS - END
 	
 		is.ignore(4);
 
 	// NIVELES
 		vector<Nivel> nivelesjuego;
-
+		string nocargoniveles = "";
 		string nohaymasniveles = "";
+		nocargoniveles = is.peek();
+		
+		if (nocargoniveles == "]")
 
-		while(nohaymasniveles != "]")
 		{
-			Nivel n;
-			
-			string ns = "";
-			getline(is,ns,'}');
-			istringstream ns2(ns);
-			n.Cargar(ns2);
-
-			nivelesjuego.push_back(n);
-
-			is.ignore(1);
-			
-			nohaymasniveles = is.peek();
+					
+			nohaymasniveles== "]";
+			_niveles = nivelesjuego;
 		}
+		
+		else
+		
+		{
 
-		_niveles = nivelesjuego;
+			while(nohaymasniveles != "]")
+			{
+				Nivel n;
+				getline(is,ns,'}');
+				istringstream ns2(ns);
+				//n.Cargar(ns2);
 
+				nivelesjuego.push_back(n);
+
+				is.ignore(1);
+			
+				nohaymasniveles = is.peek();
+			}
+
+			_niveles = nivelesjuego;
+		}	
 	// NIVELES - END
 
 	 }
