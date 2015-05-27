@@ -73,7 +73,17 @@ if(i >= 0 && i <= _niveles.size() /*&& n.floresN().size() == 0 && n.vampirosN().
 
 void Juego::jugarNivel(Nivel& n, int i)
 {
-
+	/*requiere 0 ≤ i < |niveles(this)| ;
+	requiere ancho(n) == ancho(niveles(this) i ) ;
+	requiere alto(n) == alto(niveles(this) i ) ;
+	requiere turno(n) > turno(niveles(this) i ) ;
+	requiere mismos(spawning(n), [spawn|spawn ← spawning(niveles(this) i ), turnoSpawn(spawn) > turno(n)]) ;*/
+	if ((i < _niveles.size()) && (n.turnoN() > _niveles.at(i).turnoN())){
+	_niveles.at(i) = n;
+	}else{
+		std::cout << "no hay nivel "<< i <<std::endl;
+	}
+	}
 }
 
 std::vector<Nivel> Juego::estosSaleFacil()
