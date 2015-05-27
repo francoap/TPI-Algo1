@@ -298,7 +298,7 @@ void Juego::Cargar(std::istream& is)
 			_flores = floresjuego;
 		}
 	// FLORES - END
-	
+
 		is.ignore(4);
 
 	// VAMPIROS		
@@ -338,7 +338,7 @@ void Juego::Cargar(std::istream& is)
 			_vampiros = vampirosjuego;
 		}
 	// VAMPIROS - END
-	
+
 		is.ignore(4);
 
 	// NIVELES
@@ -349,7 +349,6 @@ void Juego::Cargar(std::istream& is)
 		
 		if (noCargoNiveles == "]")
 		{
-
 			noHayMasNiveles == "]";
 			_niveles = nivelesJuego;
 		}
@@ -358,18 +357,12 @@ void Juego::Cargar(std::istream& is)
 			while(noHayMasNiveles != "]")
 			{
 				Nivel n;
-				/*string ns = "";
-				getline(is, ns, '}');
-				ns.append("}");
-				istringstream ns2(ns);*/
-				//cout << "Estamos en esto: " << is;
-				cout << "DBG 1 : " << is.rdbuf() << endl;
+
 				n.Cargar(is);
-				cout << "DBG 2 : " << is.rdbuf() << endl;
 
 				nivelesJuego.push_back(n);
 
-				is.ignore(2);
+				is.ignore(4);
 
 				noHayMasNiveles = is.peek();
 			}

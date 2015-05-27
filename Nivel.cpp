@@ -310,6 +310,7 @@ void Nivel::Cargar(std::istream& is)
 
 	if(tipo == "N")
 	{
+
 		string ancho = "";
 		getline(is, ancho, ' ');
 		_ancho = atoi(ancho.c_str());
@@ -336,11 +337,9 @@ void Nivel::Cargar(std::istream& is)
 		
 		if (nocargoflores == "]")
 		{
-					
 			nohaymasflores== "]";
 			_flores = floresnuevas;
 		}
-		
 		else
 		{
 			while(nohaymasflores != "]")
@@ -350,14 +349,14 @@ void Nivel::Cargar(std::istream& is)
 				Flor f;
 				Posicion p;
 				FlorEnJuego fej = FlorEnJuego(f, p, f.vidaF());
-			
+
 				string fs = "";
 				getline(is,fs,'}');
 				istringstream fs2(fs);
 				f.Cargar(fs2);
 				fej.flor = f;
 
-				is.ignore (3);
+				is.ignore (4);
 			
 				string posX = "";
 				getline(is,posX,' ');
@@ -379,7 +378,8 @@ void Nivel::Cargar(std::istream& is)
 			
 				nohaymasflores = is.peek();
 			}
-				_flores = floresnuevas;
+
+			_flores = floresnuevas;
 		}	
 		// FLORES - END
 

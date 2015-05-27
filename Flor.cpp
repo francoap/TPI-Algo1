@@ -79,6 +79,7 @@ void Flor::Cargar(std::istream& is)
 	using namespace std;
 
 	is.ignore(2);
+
 	string tipo = "";
 	getline(is, tipo, ' ');
 
@@ -116,6 +117,7 @@ void Flor::Cargar(std::istream& is)
 			}
 
 		}
+
 		_habilidades = habilidades;
 	}
 
