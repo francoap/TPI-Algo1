@@ -47,43 +47,30 @@ std::vector<Nivel>& Juego::nivelesJ()
 
 void Juego::agregarNivel(Nivel& n, int i)
 {
-if(i >= 0 && i <= _niveles.size() /*&& n.floresN().size() == 0 && n.vampirosN().size() == 0 && n.turnoN() == 0*/)
+	std::vector<Nivel> nivelesNuevos;
+		
+	int j = 0;
+		
+	while (j < i)
 	{
-		std::vector<Nivel> nivelesnuevos;
-		
-		int j=0;
-		
-		while (j<i)
-		{
-			nivelesnuevos.push_back(_niveles[j]);
-			++j;
-		}
-		
-		nivelesnuevos.push_back(n);
-		
-		while (j< _niveles.size())
-		{
-			nivelesnuevos.push_back(_niveles[j]);
-			++j;
-		}
-		
-		_niveles=nivelesnuevos;
+		nivelesNuevos.push_back(_niveles[j]);
+		++j;
 	}
+		
+	nivelesNuevos.push_back(n);
+		
+	while (j < _niveles.size())
+	{
+		nivelesNuevos.push_back(_niveles[j]);
+		++j;
+	}
+		
+	_niveles=nivelesNuevos;
 }
 
 void Juego::jugarNivel(Nivel& n, int i)
 {
-	/*requiere 0 ≤ i < |niveles(this)| ;
-	requiere ancho(n) == ancho(niveles(this) i ) ;
-	requiere alto(n) == alto(niveles(this) i ) ;
-	requiere turno(n) > turno(niveles(this) i ) ;
-	requiere mismos(spawning(n), [spawn|spawn ← spawning(niveles(this) i ), turnoSpawn(spawn) > turno(n)]) ;*/
-	if ((i < _niveles.size()) && (n.turnoN() > _niveles.at(i).turnoN())){
 	_niveles.at(i) = n;
-	}else{
-		std::cout << "no hay nivel "<< i <<std::endl;
-	}
-	}
 }
 
 std::vector<Nivel> Juego::estosSaleFacil()
@@ -123,21 +110,24 @@ bool Juego::muyDeExactas()
 	    {
 	    	res = false;
 	    }
-            else
-            {
-		int i = 0;
+        
+        else
+        
+        {
+			int i = 0;
 
-		while (i < nivelesGanados().size() && nivelesGanados()[i] >= 3 && res == true)
-		{
-			if (nivelesGanados()[i] != nivelesGanados()[i-1] + nivelesGanados()[i-2])
+			while (i < nivelesGanados().size() && nivelesGanados()[i] >= 3 && res == true)
 			{
-				res = false;
+				if (nivelesGanados()[i] != nivelesGanados()[i-1] + nivelesGanados()[i-2])
+				{
+					res = false;
+				}
+			
+				i++;
 			}
-			i++;
-		}
-            }
-
         }
+
+    }
 
 	return res;
 }
@@ -272,24 +262,20 @@ void Juego::Cargar(std::istream& is)
 
 		is.ignore(2);
 		
-		vector<Flor> floresjuego;
-		string nocargoflores = "";
-		string nohaymasflores = "";
-		nocargoflores = is.peek();
+		vector<Flor> floresJuego;
+		string noCargoFlores = "";
+		string noHayMasFlores = "";
+		noCargoFlores = is.peek();
 		
-		if (nocargoflores == "]")
-
+		if (noCargoFlores == "]")
 		{
-					
-			nohaymasflores== "]";
-			_flores = floresjuego;
+			noHayMasFlores== "]";
+			_flores = floresJuego;
 		}
 		
 		else
-		
 		{
-
-			while(nohaymasflores != "]")
+			while(noHayMasFlores != "]")
 			{
 				Flor f;
 			
@@ -298,38 +284,34 @@ void Juego::Cargar(std::istream& is)
 				istringstream fs2(fs);
 				f.Cargar(fs2);
 
-				floresjuego.push_back(f);
+				floresJuego.push_back(f);
 
 				is.ignore(1);
 			
-				nohaymasflores = is.peek();
+				noHayMasFlores = is.peek();
 			}
 
-			_flores = floresjuego;
+			_flores = floresJuego;
 		}
 	// FLORES - END
 
 		is.ignore(4);
 
 	// VAMPIROS		
-		vector<Vampiro> vampirosjuego;
-		string nocargovampiros = "";
-		string nohaymasvampiros = "";
-		nocargovampiros = is.peek();
+		vector<Vampiro> vampirosJuego;
+		string noCargoVampiros = "";
+		string noHayMasVampiros = "";
+		noCargoVampiros = is.peek();
 		
-		if (nocargovampiros == "]")
-
+		if (noCargoVampiros == "]")
 		{
-					
-			nohaymasvampiros== "]";
-			_vampiros = vampirosjuego;
+			noHayMasVampiros== "]";
+			_vampiros = vampirosJuego;
 		}
 		
 		else
-		
 		{
-
-			while(nohaymasvampiros != "]")
+			while(noHayMasVampiros != "]")
 			{
 				Vampiro v;
 			
@@ -338,14 +320,14 @@ void Juego::Cargar(std::istream& is)
 				istringstream vs2(vs);
 				v.Cargar(vs2);
 
-				vampirosjuego.push_back(v);
+				vampirosJuego.push_back(v);
 
 				is.ignore(1);
 			
-				nohaymasvampiros = is.peek();
+				noHayMasVampiros = is.peek();
 			}
 
-			_vampiros = vampirosjuego;
+			_vampiros = vampirosJuego;
 		}
 	// VAMPIROS - END
 
@@ -362,6 +344,7 @@ void Juego::Cargar(std::istream& is)
 			noHayMasNiveles == "]";
 			_niveles = nivelesJuego;
 		}
+
 		else
 		{
 			while(noHayMasNiveles != "]")

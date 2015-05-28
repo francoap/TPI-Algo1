@@ -68,35 +68,26 @@ std::vector<VampiroEnEspera>& Nivel::spawningN()
 
 void Nivel::agregarFlor(Flor f, Posicion p)
 {
-
 	int precio = pot(2, f.habilidadesF().size());
+	_soles = _soles - precio;
 
-	if (sinColisiones(p) && _soles >= precio)
-	{
-		_soles = _soles - precio;
-		FlorEnJuego fToAdd = FlorEnJuego(f, p, f.vidaF());
-		_flores.push_back(fToAdd);
-
-	}
-
+	FlorEnJuego fToAdd = FlorEnJuego(f, p, f.vidaF());
+	_flores.push_back(fToAdd);
 }
 
 void Nivel::pasarTurno()
 {
-	if (!terminado())
-	{
-		_soles = _soles + 1 + generarSoles();
-		_turno = _turno + 1;
+	_soles = _soles + 1 + generarSoles();
+	_turno = _turno + 1;
 
-		// Aclaracion: procesamos las flores en dos pasos porque necesitamos las flores explotadas
-		// para realizar correctamente el movimiento de los vampiros
-		std::vector<FlorEnJuego> fD = floresDaniadas(_flores); // <- Incluye flores muertas
-		_flores = sinFloresMuertas(fD);
+	// Aclaracion: procesamos las flores en dos pasos porque necesitamos las flores explotadas
+	// para realizar correctamente el movimiento de los vampiros
+	std::vector<FlorEnJuego> fD = floresDaniadas(_flores); // <- Incluye flores muertas
+	_flores = sinFloresMuertas(fD);
 
-		_vampiros = vampirosSpawneados(vampirosPosicionados(vampirosDaniados(_vampiros), fD));
+	_vampiros = vampirosSpawneados(vampirosPosicionados(vampirosDaniados(_vampiros), fD));
 
-		_spawning = nuevoSpawning();
-	}
+	_spawning = nuevoSpawning();
 }
 
 bool Nivel::terminado()
@@ -138,10 +129,7 @@ bool Nivel::obsesivoCompulsivo()
 
 void Nivel::comprarSoles(int n)
 {
-	if(n > 0)
-	{
-		_soles = _soles + n;
-	}
+_soles = _soles + n;
 }
 
 void Nivel::Mostrar(std::ostream& os)
@@ -330,19 +318,20 @@ void Nivel::Cargar(std::istream& is)
 		is.ignore(2);
 
 		// FLORES
-		vector<FlorEnJuego> floresnuevas;
-		string nocargoflores = "";
-		string nohaymasflores = "";
-		nocargoflores = is.peek();
+		vector<FlorEnJuego> floresNuevas;
+		string noCargoFlores = "";
+		string noHayMasFlores = "";
+		noCargoFlores = is.peek();
 		
-		if (nocargoflores == "]")
+		if (noCargoFlores == "]")
 		{
-			nohaymasflores== "]";
-			_flores = floresnuevas;
+			noHayMasFlores== "]";
+			_flores = floresNuevas;
 		}
+
 		else
 		{
-			while(nohaymasflores != "]")
+			while(noHayMasFlores != "]")
 			{
 				is.ignore(2);
 
@@ -372,38 +361,35 @@ void Nivel::Cargar(std::istream& is)
 				getline(is,vf,' ');
 				fej.vida = atoi (vf.c_str());
 			
-				floresnuevas.push_back(fej);
+				floresNuevas.push_back(fej);
 
 				is.ignore(2);
 			
-				nohaymasflores = is.peek();
+				noHayMasFlores = is.peek();
 			}
 
-			_flores = floresnuevas;
+			_flores = floresNuevas;
 		}	
 		// FLORES - END
 
 		is.ignore(4);
 
 		// VAMPIROS
-		vector<VampiroEnJuego> vampirosnuevos;
-		string nocargovampiros = "";
-		string nohaymasvampiros = "";
-		nocargovampiros = is.peek();
+		vector<VampiroEnJuego> vampirosNuevos;
+		string noCargoVampiros = "";
+		string noHayMasVampiros = "";
+		noCargoVampiros = is.peek();
 		
-		if (nocargovampiros == "]")
-
+		if (noCargoVampiros == "]")
 		{
-					
-			nohaymasvampiros== "]";
-			_vampiros = vampirosnuevos;
+			noHayMasVampiros== "]";
+			_vampiros = vampirosNuevos;
 		}
 		
 		else
 		
 		{
-
-			while(nohaymasvampiros != "]")
+			while(noHayMasVampiros != "]")
 			{
 				is.ignore(2);
 
@@ -433,14 +419,14 @@ void Nivel::Cargar(std::istream& is)
 				getline(is,vv,' ');
 				vej.vida = atoi (vv.c_str());
 			
-				vampirosnuevos.push_back(vej);
+				vampirosNuevos.push_back(vej);
 
 				is.ignore(2);
 			
-				nohaymasvampiros = is.peek();
+				noHayMasVampiros = is.peek();
 			}
 
-			_vampiros = vampirosnuevos;
+			_vampiros = vampirosNuevos;
 		}
 		
 		// VAMPIROS - END
@@ -448,20 +434,20 @@ void Nivel::Cargar(std::istream& is)
 		is.ignore(4);
 
 		// SPAWNING
-		vector<VampiroEnEspera> spawningnuevo;
-		string nocargospawning = "";
-		string nohaymasspawning = "";
-		nocargospawning = is.peek();
+		vector<VampiroEnEspera> spawningNuevo;
+		string noCargoSpawning = "";
+		string noHayMasSpawning = "";
+		noCargoSpawning = is.peek();
 		
-		if (nocargospawning == "]")
+		if (noCargoSpawning == "]")
 		{
-			nohaymasspawning== "]";
-			_spawning = spawningnuevo;
+			noHayMasSpawning== "]";
+			_spawning = spawningNuevo;
 		}
 		
 		else
 		{
-			while(nohaymasspawning != "]")
+			while(noHayMasSpawning != "]")
 			{
 				is.ignore(2);
 
@@ -485,15 +471,15 @@ void Nivel::Cargar(std::istream& is)
 				getline(is,turno3,' ');
 				vee.turno = atoi(turno3.c_str());
 			
-				spawningnuevo.push_back(vee);
+				spawningNuevo.push_back(vee);
 
 				is.ignore(2);
 			
-				nohaymasspawning = is.peek();
+				noHayMasSpawning = is.peek();
 			}
 		}
 
-		_spawning = spawningnuevo;
+		_spawning = spawningNuevo;
 		// SPAWNING - END
 	}
 
