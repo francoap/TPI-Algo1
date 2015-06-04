@@ -58,7 +58,7 @@ int main(){
 	cout << j.muyDeExactas() << endl;
 
 	/* PROBANDO ENTRADA/SALIDA */
-
+    /* Esto lo usamos con el proposito de "probar" los metodo mostrar, guardar y cargar de las clases
     cout << "Probando mostrar: " << endl << endl;
 
     // Mostramos las instancias
@@ -110,7 +110,7 @@ int main(){
     cout << "Volvemos a mostrar la instancia luego de la carga: " << endl;
     j.Mostrar(cout);
     cout << "-------------------------------------------------------------" << endl;
-
+    */
 	/* PROBANDO ENTRADA/SALIDA - END*/
 
 }

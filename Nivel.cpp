@@ -129,7 +129,7 @@ bool Nivel::obsesivoCompulsivo()
 
 void Nivel::comprarSoles(int n)
 {
-_soles = _soles + n;
+	_soles = _soles + n;
 }
 
 void Nivel::Mostrar(std::ostream& os)
@@ -484,8 +484,6 @@ void Nivel::Cargar(std::istream& is)
 	}
 
 }
-
-
 
 bool Nivel::sinColisiones(Posicion p)
 {

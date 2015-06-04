@@ -13,6 +13,7 @@
 
 class Juego
 {
+
 public:
 
 	Juego();
@@ -32,7 +33,6 @@ public:
 	void Guardar(std::ostream& os);
 	void Cargar(std::istream& is);
 
-
 private:
 
 	std::vector<Flor> _flores;
@@ -44,4 +44,5 @@ private:
 	std::vector<Nivel> maxFlores(std::vector<Nivel> niveles);
 	std::vector<Nivel> maxSoles(std::vector<Nivel> niveles);
 	std::vector<int> nivelesGanados();
+
 };
