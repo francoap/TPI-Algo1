@@ -57,8 +57,8 @@ int main(){
   
 	cout << j.muyDeExactas() << endl;
 
-	/* PROBANDO ENTRADA/SALIDA */
-    /* Esto lo usamos con el proposito de "probar" los metodo mostrar, guardar y cargar de las clases
+	// PROBANDO ENTRADA/SALIDA 
+    // Esto lo usamos con el proposito de "probar" los metodo mostrar, guardar y cargar de las clases
     cout << "Probando mostrar: " << endl << endl;
 
     // Mostramos las instancias
@@ -103,14 +103,13 @@ int main(){
     cout << "-------------------------------------------------------------" << endl;
     cout << "\"Guardamos\" el juego en el ostream de la consola. Se guardo: ";
     j.Guardar(cout);
-    cout << endl  << "Cargamos el siguiente istream: { J [ ] [ ] [ { N 5 5 3 56 [ ( { F 33 6 [ Atacar Explotar ] } ( 2 3 ) 10 ) ( { F 33 0 [ Generar Explotar ] } ( 2 5 ) 33 ) ] [ ( { V Desviado 50 8 } ( 4 5 ) 10 ) ] [ ( { V Caminante 30 7 } 2 5 ) ] } ] }" << endl;
+    cout << endl  << "Cargamos el siguiente istream: { J [ { F 30 10 [ Generar Atacar ] } { F 30 10 [ Generar Atacar ] } ] [ { V Desviado 45 60 } { V Desviado 45 60 } ] [ { N 5 5 3 56 [ ( { F 33 6 [ Atacar Explotar ] } ( 2 3 ) 10 ) ( { F 33 0 [ Generar Explotar ] } ( 2 5 ) 33 ) ] [ ( { V Desviado 50 8 } ( 4 5 ) 10 ) ] [ ( { V Caminante 30 7 } 2 5 ) ] } { N 5 5 3 56 [ ( { F 33 6 [ Atacar Explotar ] } ( 2 3 ) 10 ) ( { F 33 0 [ Generar Explotar ] } ( 2 5 ) 33 ) ] [ ( { V Desviado 50 8 } ( 4 5 ) 10 ) ] [ ( { V Caminante 30 7 } 2 5 ) ] } ] }" << endl;
     istringstream inJ("{ J [ { F 30 10 [ Generar Atacar ] } { F 30 10 [ Generar Atacar ] } ] [ { V Desviado 45 60 } { V Desviado 45 60 } ] [ { N 5 5 3 56 [ ( { F 33 6 [ Atacar Explotar ] } ( 2 3 ) 10 ) ( { F 33 0 [ Generar Explotar ] } ( 2 5 ) 33 ) ] [ ( { V Desviado 50 8 } ( 4 5 ) 10 ) ] [ ( { V Caminante 30 7 } 2 5 ) ] } { N 5 5 3 56 [ ( { F 33 6 [ Atacar Explotar ] } ( 2 3 ) 10 ) ( { F 33 0 [ Generar Explotar ] } ( 2 5 ) 33 ) ] [ ( { V Desviado 50 8 } ( 4 5 ) 10 ) ] [ ( { V Caminante 30 7 } 2 5 ) ] } ] }");
-    //istringstream inJ("{ J [ ] [ ] [ ] }");
     j.Cargar(inJ);
     cout << "Volvemos a mostrar la instancia luego de la carga: " << endl;
     j.Mostrar(cout);
     cout << "-------------------------------------------------------------" << endl;
-    */
-	/* PROBANDO ENTRADA/SALIDA - END*/
+    
+	// PROBANDO ENTRADA/SALIDA - END
 
 }

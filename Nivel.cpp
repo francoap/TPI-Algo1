@@ -28,7 +28,6 @@ Nivel::Nivel(int ancho, int alto, int soles, std::vector<VampiroEnEspera>& spawn
 	_vampiros = v;
 
 	_turno = 0;
-
 }
 
 int Nivel::anchoN()
@@ -80,9 +79,9 @@ void Nivel::pasarTurno()
 	_soles = _soles + 1 + generarSoles();
 	_turno = _turno + 1;
 
-	// Aclaracion: procesamos las flores en dos pasos porque necesitamos las flores explotadas
-	// para realizar correctamente el movimiento de los vampiros
-	std::vector<FlorEnJuego> fD = floresDaniadas(_flores); // <- Incluye flores muertas
+	// Procesamos las flores en dos pasos porque necesitamos las flores explotadas
+	// para realizar correctamente el movimiento de los vampiros.
+	std::vector<FlorEnJuego> fD = floresDaniadas(_flores); // <- Incluye flores muertas.
 	_flores = sinFloresMuertas(fD);
 
 	_vampiros = vampirosSpawneados(vampirosPosicionados(vampirosDaniados(_vampiros), fD));
@@ -284,7 +283,6 @@ void Nivel::Guardar(std::ostream& os)
 	os << "] }";
 	// SPAWNING - END
 
-
 }
 
 void Nivel::Cargar(std::istream& is)
@@ -339,13 +337,10 @@ void Nivel::Cargar(std::istream& is)
 				Posicion p;
 				FlorEnJuego fej = FlorEnJuego(f, p, f.vidaF());
 
-				string fs = "";
-				getline(is,fs,'}');
-				istringstream fs2(fs);
-				f.Cargar(fs2);
+				f.Cargar(is);
 				fej.flor = f;
 
-				is.ignore (4);
+				is.ignore(4);
 			
 				string posX = "";
 				getline(is,posX,' ');
@@ -387,7 +382,6 @@ void Nivel::Cargar(std::istream& is)
 		}
 		
 		else
-		
 		{
 			while(noHayMasVampiros != "]")
 			{
@@ -397,13 +391,10 @@ void Nivel::Cargar(std::istream& is)
 				Posicion p;
 				VampiroEnJuego vej = VampiroEnJuego(v, p, v.vidaV());
 			
-				string vs = "";
-				getline(is,vs,'}');
-				istringstream vs2(vs);
-				v.Cargar(vs2);
+				v.Cargar(is);
 				vej.vampiro = v;
 
-				is.ignore (3);
+				is.ignore (4);
 			
 				string posX = "";
 				getline(is,posX,' ');
@@ -455,13 +446,10 @@ void Nivel::Cargar(std::istream& is)
 				int f, t;
 				VampiroEnEspera vee = VampiroEnEspera(v, f, t);
 			
-				string vs = "";
-				getline(is,vs,'}');
-				istringstream vs3(vs);
-				v.Cargar(vs3);
+				v.Cargar(is);
 				vee.vampiro = v;
 
-				is.ignore (1);
+				is.ignore (2);
 			
 				string fila3 = "";
 				getline(is,fila3,' ');
@@ -548,6 +536,7 @@ bool Nivel::florExploto(Posicion p, std::vector<FlorEnJuego> flores)
 			res = true;
 			i = _flores.size();
 		}
+	
 		else
 		{
 			i++;
@@ -602,6 +591,7 @@ std::vector<VampiroEnEspera> Nivel::nuevosVampiros()
 	while(i < _spawning.size())
 	{
 		VampiroEnEspera v = _spawning.at(i);
+		
 		if(v.turno == _turno)
 		{
 			res.push_back(v);
@@ -627,22 +617,22 @@ std::vector<VampiroEnJuego> Nivel::vampirosPosicionados(std::vector<VampiroEnJue
 
 void Nivel::moverVampiro(VampiroEnJuego &vampiro, std::vector<FlorEnJuego> flores)
 {
-	// Aqui verificamos la existencia de una flor en la posicion del vampiro
-	// la busqueda se hace en _flores y en esta instancia _flores deberia tener
-	// solamente flores vivas, por eso no pedimos que no este muerta
+	// Aqui verificamos la existencia de una flor en la posicion del vampiro.
+	// La busqueda se hace en _flores y en esta instancia _flores deberia tener
+	// solamente flores vivas, por eso no pedimos que no este muerta.
 	if(!existeFlorEnPos(vampiro.pos))
 	{
-		// No hay una flor bloqueandonos, asi que intentamos mover el vampiro
-
+		// No hay una flor bloqueandonos, asi que intentamos mover el vampiro.
 		// Tenemos que ver si aqui habia una flor que exploto
-		// y dado el caso el vampiro debe retroceder
+		// y dado el caso el vampiro debe retroceder.
 		if (florExploto(vampiro.pos, flores))
 		{
 			retroceder(vampiro);
 		}
+		
 		else
 		{
-			// Como no exploto una flor intentamos avanzar
+			// Como no exploto una flor intentamos avanzar.
 			avanzar(vampiro);
 		}
 
@@ -651,10 +641,10 @@ void Nivel::moverVampiro(VampiroEnJuego &vampiro, std::vector<FlorEnJuego> flore
 
 void Nivel::avanzar(VampiroEnJuego &vampiro)
 {
-	// Avanzamos una columna
+	// Avanzamos una columna.
 	vampiro.pos.x = vampiro.pos.x - 1;
 
-	// Si el vampiro es desviado se desvia una fila
+	// Si el vampiro es desviado se desvia una fila.
 	if (vampiro.vampiro.claseV() == Desviado && vampiro.pos.y > 1)
 	{
 		desviar(vampiro);
@@ -680,7 +670,7 @@ std::vector<VampiroEnJuego> Nivel::vampirosDaniados(std::vector<VampiroEnJuego> 
 
 	unsigned long i = 0;
 
-	while (i < vampiros.size())
+	while(i < vampiros.size())
 	{
 		VampiroEnJuego v = vampiros.at(i);
 		daniarVampiro(v);
@@ -688,6 +678,8 @@ std::vector<VampiroEnJuego> Nivel::vampirosDaniados(std::vector<VampiroEnJuego> 
 		{
 			res.push_back(v);
 		}
+		
+		i++;
 	}
 
 	return res;
@@ -727,7 +719,7 @@ bool Nivel::enLineaDeVision(VampiroEnJuego v, FlorEnJuego f)
 
 	if (v.pos.y == f.pos.y)
 	{
-		// Estan en la misma fila -> si no hay un vampiro intermedio devolvemos true
+		// Estan en la misma fila -> si no hay un vampiro intermedio devolvemos true.
 		res = true;
 
 		unsigned long cV = _vampiros.size();
@@ -737,9 +729,9 @@ bool Nivel::enLineaDeVision(VampiroEnJuego v, FlorEnJuego f)
 		{
 			if (f.pos.x <= _vampiros.at(i).pos.x < v.pos.x)
 			{
-				// encontramos un vampiro intermedio, devolvemos false
+				// Encontramos un vampiro intermedio, devolvemos false.
 				res = false;
-				i = cV; // dejamos de iterar porque ya tenemos lo que buscabamos
+				i = cV; // Dejamos de iterar porque ya tenemos lo que buscabamos.
 			}
 			else
 			{
@@ -767,7 +759,7 @@ std::vector<FlorEnJuego> Nivel::floresDaniadas(std::vector<FlorEnJuego> flores)
 
 		// Mantenemos las flores muertas porque las necesitamos para verificar
 		// las flores que explotaron durante la etapa en la que movemos los vampiros.
-		// Debemos entonces limpiar la lista de flores luego de procesar la lista de vampiros
+		// Debemos entonces limpiar la lista de flores luego de procesar la lista de vampiros.
 		res.push_back(f);
 
 		i++;
@@ -799,33 +791,34 @@ std::vector<FlorEnJuego> Nivel::sinFloresMuertas(std::vector<FlorEnJuego> flores
 
 void Nivel::daniarFlor(FlorEnJuego& flor)
 {
-
 	unsigned long i = 0;
 
 	while(i < _vampiros.size())
 	{
 		VampiroEnJuego v = _vampiros.at(i);
 
-		// Este if/else nos permite parar el ciclo si la flor ya esta muerta
+		// Este if/else nos permite parar el ciclo si la flor ya esta muerta.
 		if (!florMuerta(flor))
 		{
 			if (posicionesIguales(v.pos, flor.pos))
 			{
-				// Vemos si la flor tiene la habilidad explotar
+				// Vemos si la flor tiene la habilidad explotar.
 				if(florExplota(flor))
 				{
-					// La flor explota por lo que seteamos su vida en 0 (muerta)
+					// La flor explota por lo que seteamos su vida en 0 (muerta).
 					flor.vida = 0;
 				}
+				
 				else
 				{
-					// La flor no explota -> le restamos el danio del vampiro
+					// La flor no explota -> le restamos el danio del vampiro.
 					flor.vida = flor.vida - v.vampiro.cuantoPegaV();
 				}
 			}
 
 			i++;
 		}
+		
 		else
 		{
 			i = _vampiros.size();
@@ -837,7 +830,7 @@ bool Nivel::florMuerta(FlorEnJuego flor)
 {
 	bool res = false;
 
-	// Decidimos que la flor esta muerta si su vida no es mayor a CERO
+	// Decidimos que la flor esta muerta si su vida no es mayor a cero.
 	if (!(flor.vida > 0))
 	{
 		res = true;
@@ -852,10 +845,10 @@ int Nivel::generarSoles()
 
 	unsigned int i = 0;
 
-	// Iteramos por todas las FlorEnJuego
+	// Iteramos por todas las FlorEnJuego.
 	while(i < _flores.size())
 	{
-		// Si la flor tiene la habilidad Generar sumamos uno al resultado
+		// Si la flor tiene la habilidad Generar sumamos uno al resultado.
 		if(florGenera(_flores.at(i)))
 		{
 			res++;

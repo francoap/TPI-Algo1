@@ -85,9 +85,25 @@ void Juego::altoCheat(int n)
     unsigned long i = 0;
 
     while(i < nivel.vampirosN().size())
-    {
+    {	
         nivel.vampirosN().at(i).vida = nivel.vampirosN().at(i).vida / 2;
+        i++;
     }
+	
+	std::vector<VampiroEnJuego> vampirosNuevosDeN;
+
+	unsigned long j = 0;
+
+    while(j < nivel.vampirosN().size())
+    {
+        if (nivel.vampirosN().at(j).vida > 0)
+        {
+	    	vampirosNuevosDeN.push_back(nivel.vampirosN().at(j));
+        }
+		j++;
+    }
+
+    nivel.vampirosN() = vampirosNuevosDeN;
 }
 
 bool Juego::muyDeExactas()
@@ -279,14 +295,11 @@ void Juego::Cargar(std::istream& is)
 			{
 				Flor f;
 			
-				string fs = "";
-				getline(is,fs,'}');
-				istringstream fs2(fs);
-				f.Cargar(fs2);
+				f.Cargar(is);
 
 				floresJuego.push_back(f);
 
-				is.ignore(1);
+				is.ignore(2);
 			
 				noHayMasFlores = is.peek();
 			}
@@ -314,15 +327,12 @@ void Juego::Cargar(std::istream& is)
 			while(noHayMasVampiros != "]")
 			{
 				Vampiro v;
-			
-				string vs = "";
-				getline(is,vs,'}');
-				istringstream vs2(vs);
-				v.Cargar(vs2);
+
+				v.Cargar(is);
 
 				vampirosJuego.push_back(v);
 
-				is.ignore(1);
+				is.ignore(2);
 			
 				noHayMasVampiros = is.peek();
 			}
@@ -378,26 +388,26 @@ std::vector<Nivel> Juego::maxSoles(std::vector<Nivel> niveles)
 
     while(i < niveles.size())
     {
-        // bool add define si el nivel va a ser agregado a la lista de maximos
-        // para empezar suponemos que el nivel i-esimo es un maximo
+        // bool add define si el nivel va a ser agregado a la lista de maximos.
+        // Para empezar suponemos que el nivel i-esimo es un maximo.
         bool add = true;
 
         unsigned long j = 0;
 
         while(j < niveles.size())
         {
-            // verificamos que sea un maximo comparado con cada nivel j-esimo
+            // Verificamos que sea un maximo comparado con cada nivel j-esimo.
             if (niveles.at(i).solesN() < niveles.at(j).solesN())
             {
-                // como no es maximo comparado con el nivel j-esimo dado
-                // no queremos agregarlo a la lista de maximos
+                // Como no es maximo comparado con el nivel j-esimo dado
+                // no queremos agregarlo a la lista de maximos.
                 add = false;
             }
 
             j++;
         }
 
-        // si el nivel i-esimo es maximo lo agregamos a la lista de maximos
+        // Si el nivel i-esimo es maximo lo agregamos a la lista de maximos.
         if(add)
         {
             res.push_back(niveles.at(i));

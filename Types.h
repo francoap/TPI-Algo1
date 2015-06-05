@@ -21,4 +21,3 @@ struct Posicion
 	int x;
 	int y;
 };
-
